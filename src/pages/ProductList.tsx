@@ -17,8 +17,7 @@ function ProductList() {
     queryFn: getProducts,
   });
 
-  const cart = useSelector(getCartProducts);
-  console.log(cart);
+  // const cart = useSelector(getCartProducts);
 
   if (isLoading) return <Spinner />;
 
