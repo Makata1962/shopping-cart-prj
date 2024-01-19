@@ -5,29 +5,35 @@ import ProductList from './pages/ProductList';
 import ProductDetails from './pages/ProductDetails';
 import Cart from './pages/Cart';
 import Favorites from './pages/Favorites';
+import AppLayout from './ui/AppLayout';
 
 const router = createBrowserRouter([
   {
-  path: '/',
-  element: <Home />
+    element: <AppLayout />,
+    children: [
+      {
+        path: '/',
+        element: <Home />
+        },
+        { 
+          path: '/product-list',
+          element: <ProductList />
+        },
+        {
+          path: '/product-list/:productId',
+          element: <ProductDetails />
+        },
+        {
+          path: '/cart',
+          element: <Cart />
+        },
+        {
+          path:'/favorites',
+          element: <Favorites />
+        }
+    ]
   },
-  { 
-    path: '/product-list',
-    element: <ProductList />
-  },
-  {
-    path: '/product-list/:productId',
-    element: <ProductDetails />
-  },
-  {
-    path: '/cart',
-    element: <Cart />
-  },
-  {
-    path:'/favorites',
-    element: <Favorites />
-  }
-
+ 
 ])
 
 function App() {
