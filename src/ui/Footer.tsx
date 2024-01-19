@@ -11,7 +11,7 @@ import Button from './Button';
 function Footer() {
   return (
     <div className='h-[420px] w-full  bg-[#f4f4f4]'>
-      <div className='flex justify-between max-w-[1300px]'>
+      <div className='flex justify-between'>
         <div className='mt-9 mx-20'>
           <div className='mb-5'>Navigation</div>
           <Image src={left} alt='navigation underline' className='mb-5' />

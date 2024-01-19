@@ -5,9 +5,9 @@ import Header from './Header';
 
 function AppLayout() {
   return (
-    <div>
+    <div className='mx-auto text-center'>
       <Header />
-      <main>
+      <main className='px-10'>
         <Outlet />
         <CartOverview />
       </main>
