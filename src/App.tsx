@@ -1,14 +1,11 @@
-import { useState } from 'react';
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
 import './App.css';
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <>
-     <h1 className='bg-red-400'>tailwind?</h1>
+      <h1 className='font-semibold text-yellow-300 rounded-lg bg-red-400 flex items-center justify-center'>
+        Tailwind?
+      </h1>
     </>
   );
 }
