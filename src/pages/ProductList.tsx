@@ -7,16 +7,9 @@ function ProductList() {
 
   return (
     <div className='flex flex-wrap gap-4'>
-      {products.map(({ id, title, image, price, rating }: CardProps) => {
+      {products.map(({ id, title, image, price }: CardProps) => {
         return (
-          <Card
-            key={id}
-            id={id}
-            title={title}
-            rating={rating}
-            price={price}
-            image={image}
-          />
+          <Card key={id} id={id} title={title} price={price} image={image} />
         );
       })}
     </div>
