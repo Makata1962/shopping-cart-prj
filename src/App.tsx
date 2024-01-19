@@ -2,11 +2,12 @@ import './App.css';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Home from './pages/Home';
 import ProductList from './pages/ProductList'; 
-import {loader as productLoader} from './utils/helpers';
 import ProductDetails from './pages/ProductDetails';
 import Cart from './pages/Cart';
 import Favorites from './pages/Favorites';
 import AppLayout from './ui/AppLayout';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
 
 const router = createBrowserRouter([
   {
@@ -19,7 +20,6 @@ const router = createBrowserRouter([
         { 
           path: '/product-list',
           element: <ProductList />,
-          loader: productLoader,
         },
         {
           path: '/product-list/:productId',
@@ -37,10 +37,29 @@ const router = createBrowserRouter([
   },
 ])
 
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 60* 1000,
+    }
+  }
+})
+
 function App() {
+  
   return (
-    <RouterProvider router={router} />
+    <QueryClientProvider client={queryClient}>
+     <RouterProvider router={router} />
+    </QueryClientProvider>
   )
 }
 
 export default App;
+function useSelector() {
+  throw new Error('Function not implemented.');
+}
+
+function getCartProducts(): any {
+  throw new Error('Function not implemented.');
+}
+

@@ -1,9 +1,28 @@
-import { useLoaderData } from 'react-router-dom';
 import Card from '../features/product/Card';
-import { CardProps, ProductsProps } from '../utils/interfaces';
+import { CardProps } from '../utils/interfaces';
+import { getProducts } from '../services/apiProducts';
+import { useQuery } from '@tanstack/react-query';
+import Spinner from '../ui/Spinner';
+import Error from '../ui/Error';
+import { useSelector } from 'react-redux';
+import { getCartProducts } from '../slices/productSlice';
 
 function ProductList() {
-  const products = useLoaderData() as ProductsProps;
+  const {
+    isLoading,
+    data: products,
+    error,
+  } = useQuery({
+    queryKey: ['product'],
+    queryFn: getProducts,
+  });
+
+  const cart = useSelector(getCartProducts);
+  console.log(cart);
+
+  if (isLoading) return <Spinner />;
+
+  if (error) return <Error message={error} />;
 
   return (
     <div className='flex flex-wrap gap-4'>

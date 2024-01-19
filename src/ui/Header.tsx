@@ -7,13 +7,13 @@ import cart from '../assets/cart.svg';
 function Header() {
   return (
     <div className='w-full h-[75px] flex justify-between items-center'>
-      <div>
+      <Button to='/' type='nav'>
         <Image
           src={closet}
           alt='closet'
           className='w-[125px] h-[34px] hover:cursor-pointer'
         />
-      </div>
+      </Button>
       <nav className='w-[275px] flex justify-between items-center'>
         <Button to='/product-list' type='nav'>
           Discovery
