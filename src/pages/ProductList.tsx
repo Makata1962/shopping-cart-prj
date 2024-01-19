@@ -1,12 +1,26 @@
 import { useLoaderData } from 'react-router-dom';
+import Card from '../features/product/Card';
+import { CardProps, ProductsProps } from '../utils/interfaces';
 
 function ProductList() {
-  const products = useLoaderData();
-  console.log('products', products);
+  const products = useLoaderData() as ProductsProps;
 
-  return <div>ProductList</div>;
+  return (
+    <div className='flex flex-wrap gap-4'>
+      {products.map(({ id, title, image, price, rating }: CardProps) => {
+        return (
+          <Card
+            key={id}
+            id={id}
+            title={title}
+            rating={rating}
+            price={price}
+            image={image}
+          />
+        );
+      })}
+    </div>
+  );
 }
-
-
 
 export default ProductList;
