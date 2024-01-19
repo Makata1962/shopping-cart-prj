@@ -1,13 +1,39 @@
 import './App.css';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import Home from './pages/Home';
+import ProductList from './pages/ProductList';
+import ProductDetails from './pages/ProductDetails';
+import Cart from './pages/Cart';
+import Favorites from './pages/Favorites';
+
+const router = createBrowserRouter([
+  {
+  path: '/',
+  element: <Home />
+  },
+  { 
+    path: '/product-list',
+    element: <ProductList />
+  },
+  {
+    path: '/product-list/:productId',
+    element: <ProductDetails />
+  },
+  {
+    path: '/cart',
+    element: <Cart />
+  },
+  {
+    path:'/favorites',
+    element: <Favorites />
+  }
+
+])
 
 function App() {
   return (
-    <>
-      <h1 className='font-semibold text-yellow-300 rounded-lg bg-red-400 flex items-center justify-center'>
-        Tailwind?
-      </h1>
-    </>
-  );
+    <RouterProvider router={router} />
+  )
 }
 
 export default App;
