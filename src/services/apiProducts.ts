@@ -1,13 +1,15 @@
-const API_URL = "https://fakestoreapi.com/";
+const API_URL = "https://fakestoreapi.com";
 
 export async function getProducts() {
-    const res = await fetch(`${API_URL}/products`);
+    try {
+        const res = await fetch(`${API_URL}/products`);
+        const data = await res.json();
 
-    // fetch won't throw error on 400 errors (e.g. when URL is wrong), so we need to do it manually. This will then go into the catch block, where the message is set
-    if (!res.ok) throw Error("Failed getting Products");
-
-    const { data } = await res.json();
-    return data;
+        return data;
+    } catch (error) {
+        console.error("Error fetching products:", error);
+    }
+    return [];
 }
 
 export async function getProduct(id: number) {
