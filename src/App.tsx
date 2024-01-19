@@ -1,7 +1,8 @@
 import './App.css';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Home from './pages/Home';
-import ProductList, {loader as productLoader} from './pages/ProductList';
+import ProductList from './pages/ProductList'; 
+import {loader as productLoader} from './utils/helpers';
 import ProductDetails from './pages/ProductDetails';
 import Cart from './pages/Cart';
 import Favorites from './pages/Favorites';

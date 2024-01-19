@@ -1,4 +1,4 @@
-const API_URL = "https://fakestoreapi.com";
+import { API_URL } from '../utils/constants';
 
 export async function getProducts() {
     try {
