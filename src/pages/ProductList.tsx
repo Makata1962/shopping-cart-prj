@@ -1,14 +1,12 @@
+import { useLoaderData } from 'react-router-dom';
 
 function ProductList() {
+  const products = useLoaderData();
+  console.log('products', products);
 
-  return (
-    <div>ProductList</div>
-  )
+  return <div>ProductList</div>;
 }
 
 
-// function loader() {
 
-// }
-
-export default ProductList
+export default ProductList;

@@ -1,7 +1,7 @@
 import './App.css';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Home from './pages/Home';
-import ProductList from './pages/ProductList';
+import ProductList, {loader as productLoader} from './pages/ProductList';
 import ProductDetails from './pages/ProductDetails';
 import Cart from './pages/Cart';
 import Favorites from './pages/Favorites';
@@ -17,7 +17,8 @@ const router = createBrowserRouter([
         },
         { 
           path: '/product-list',
-          element: <ProductList />
+          element: <ProductList />,
+          loader: productLoader,
         },
         {
           path: '/product-list/:productId',
@@ -33,7 +34,6 @@ const router = createBrowserRouter([
         }
     ]
   },
- 
 ])
 
 function App() {
