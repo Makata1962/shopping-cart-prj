@@ -1,34 +1,35 @@
-import Spinner from './Spinner';
-import Error from './Error';
-import Image from './Image';
+import Image from '../../ui/Image';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import { getCategories } from '../services/apiProducts';
+import { getImageSrc } from '../../utils/helpers';
+import { getCategories } from '../../services/apiProducts';
 import { useQuery } from '@tanstack/react-query';
-import { getImageSrc } from '../utils/helpers';
+import Spinner from '../../ui/Spinner';
+import Error from '../../ui/Error';
 
 const settings = {
   infinite: true,
-  slidesToShow: 3,
+  slidesToShow: 4,
   slidesToScroll: 1,
   autoplay: true,
-  speed: 2000,
+  speed: 1000,
   autoplaySpeed: 2000,
   cssEase: 'linear',
 };
 
 function Carousel() {
-  const {
-    isLoading,
-    data = [], // data is definitely array, but sometimes due to api issues it's undefined
-    error,
-  } = useQuery({
+  const { isLoading, data, error } = useQuery({
     queryKey: ['product'],
     queryFn: getCategories,
   });
-
-  const categories = ['Dress', 'Jacket', 'Trainers', 'Glasses', ...data];
+  const categories = [
+    'Dress',
+    'Jacket',
+    'Trainers',
+    'Glasses',
+    ...(data || []),
+  ];
 
   if (isLoading) return <Spinner />;
   if (error) return <Error message={error} />;

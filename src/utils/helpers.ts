@@ -1,3 +1,4 @@
+import { getProducts } from '../services/apiProducts';
 import Trainers from '../assets/trainers.png';
 import Dress from '../assets/dress.png';
 import Jacket from '../assets/jacket.png';
@@ -21,4 +22,10 @@ export function getImageSrc(categoryName: string) {
     // Default to Dress image if category name doesn't match,
     // because api data of categories are different from figma design
     return images[categoryName] || Jacket
+}
+
+
+export async function productLoader() {
+    const products = await getProducts();
+    return products;
 }
