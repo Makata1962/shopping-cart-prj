@@ -20,3 +20,14 @@ export async function getProduct(id: number) {
     return data;
 }
 
+export async function getCategories() {
+    try {
+        const res = await fetch(`${API_URL}/products/categories`);
+        const data = await res.json();
+
+        return data;
+    } catch (error) {
+        console.error("Error fetching products:", error);
+    }
+    return [];
+}

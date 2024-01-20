@@ -12,7 +12,7 @@ export interface CardProps {
 }
 
 export interface ImageProps {
-    src: string;
+    src?: string;
     alt: string;
     className?: string;
 }
