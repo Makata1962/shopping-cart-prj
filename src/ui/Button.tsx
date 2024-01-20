@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { ButtonProps } from '../utils/interfaces';
 
 function Button({ children, disabled, to, type, onClick }: ButtonProps) {
@@ -10,6 +10,16 @@ function Button({ children, disabled, to, type, onClick }: ButtonProps) {
     secondary: base + ' px-3 py-1 md:px-3 md:py-1 text-[10px]',
     nav: 'font-semibold	font-roboto',
   };
+
+  const navigate = useNavigate();
+  const className = 'text-sm text-blue-500 hover:text-blue-600 hover:underline';
+
+  if (to === '-1')
+    return (
+      <button className={className} onClick={() => navigate(-1)}>
+        {children}
+      </button>
+    );
 
   if (to)
     return (
