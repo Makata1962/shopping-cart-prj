@@ -1,12 +1,12 @@
-import Image from './Image';
+import Image from '../../ui/Image';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import { getImageSrc } from '../utils/helpers';
-import { getCategories } from '../services/apiProducts';
+import { getImageSrc } from '../../utils/helpers';
+import { getCategories } from '../../services/apiProducts';
 import { useQuery } from '@tanstack/react-query';
-import Spinner from './Spinner';
-import Error from './Error';
+import Spinner from '../../ui/Spinner';
+import Error from '../../ui/Error';
 
 const settings = {
   infinite: true,
@@ -19,11 +19,7 @@ const settings = {
 };
 
 function Carousel() {
-  const {
-    isLoading,
-    data,
-    error,
-  } = useQuery({
+  const { isLoading, data, error } = useQuery({
     queryKey: ['product'],
     queryFn: getCategories,
   });
