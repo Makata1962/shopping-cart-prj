@@ -6,11 +6,13 @@ import Header from './Header';
 function AppLayout() {
   return (
     <div className='mx-auto text-center'>
-      <Header />
-      <main className='px-10'>
-        <Outlet />
-        <CartOverview />
-      </main>
+      <div className='mx-auto flex flex-col justify-center items-center'>
+        <Header />
+        <main>
+          <Outlet />
+          <CartOverview />
+        </main>
+      </div>
       <Footer />
     </div>
   );

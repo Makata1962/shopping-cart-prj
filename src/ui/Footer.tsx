@@ -10,7 +10,7 @@ import Button from './Button';
 
 function Footer() {
   return (
-    <div className='h-[420px] w-full  bg-[#f4f4f4]'>
+    <div className='h-[420px] bg-[#f4f4f4] w-screen'>
       <div className='flex justify-between'>
         <div className='mt-9 mx-20'>
           <div className='mb-5'>Navigation</div>
