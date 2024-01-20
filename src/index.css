@@ -5,3 +5,10 @@
 :root {
     font-family: "BPG Glaho", sans-serif;
 }
+
+ 
+  .slick-next:before,
+  .slick-prev:before {
+    color: gray
+  }
+  
