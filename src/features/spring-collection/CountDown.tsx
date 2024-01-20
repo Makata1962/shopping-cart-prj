@@ -42,7 +42,7 @@ function Countdown({ targetDate }: { targetDate: Date }) {
           <span className='block text-4xl font-medium'>
             {String(timeLeft[interval]).padStart(2, '0')}
           </span>
-          <span className='block text-sm font-medium capitalize font-medium'>
+          <span className='block text-sm font-medium capitalize'>
             {interval}
           </span>
         </div>

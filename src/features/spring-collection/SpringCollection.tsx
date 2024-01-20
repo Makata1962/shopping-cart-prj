@@ -7,7 +7,7 @@ function SpringCollection() {
   const endDate = '2024-05-30T00:00:00';
 
   return (
-    <div className='flex justify-center relative'>
+    <div className='flex justify-center items relative overflow-x-hidden'>
       <Image src={spring} alt='spring collection cover' />
       <div className='absolute bottom-20 left-60 w-full h-full flex flex-col justify-center items-center'>
         <h1 className='mb-5 font-medium'>
@@ -20,7 +20,7 @@ function SpringCollection() {
           </Button>
         </span>
         <div className='w-[280px] h-[60px] bg-[#b1b1b1] flex justify-around items-center backdrop-blur-sm bg-white/30'>
-          <Countdown targetDate={endDate} />
+          <Countdown targetDate={new Date(endDate)} />
         </div>
       </div>
     </div>
