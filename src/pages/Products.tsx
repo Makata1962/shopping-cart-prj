@@ -2,7 +2,6 @@ import { useContext, useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { getCategories } from '../services/apiProducts';
-import { ProductsProps } from '../utils/interfaces';
 import ProductList from '../features/product/ProductList';
 import SideBar from '../features/sidebar/SideBar';
 import Spinner from '../ui/Spinner';
@@ -14,7 +13,7 @@ function Products() {
   const { selectedCategories } =
     useContext(CategoriesContext);
   const [priceRange, setPriceRange] = useState<number[]>([0, 500]);
-  const products = useLoaderData() as ProductsProps;
+  const products = useLoaderData() as  Array<CardProps>;
 
   const { isLoading, data, error } = useQuery({
     queryKey: ['product'],
@@ -31,8 +30,8 @@ function Products() {
   const filteredProducts = products.filter((product: CardProps) => {
     const isInSelectedCategory =
       selectedCategories?.length === 0 ||
-      selectedCategories?.includes(product?.category);
-    const isInPriceRange =
+      selectedCategories?.includes(product?.category || "");
+      const isInPriceRange =
       product.price >= priceRange[0] && product.price <= priceRange[1];
     return isInSelectedCategory && isInPriceRange;
   }) as CardProps[];

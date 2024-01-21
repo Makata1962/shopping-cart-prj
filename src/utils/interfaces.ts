@@ -1,5 +1,4 @@
 export interface ProductsProps {
-    filter(arg0: (product: CardProps) => boolean): CardProps[];
     products: CardProps[];
 }
 
@@ -32,7 +31,14 @@ export interface RangeSliderProps {
 }
 
 export interface SideBarProps {
-    setSelectedCategories: (selected: string[]) => void;
     setPriceRange: ((value: number) => void) | ((value: number[]) => void)
+    categories: string[],
     priceRange: number[]
 }
+
+export interface TimeLeft {
+    days: number;
+    hours: number;
+    minutes: number;
+    seconds: number;
+  }

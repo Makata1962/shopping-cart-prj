@@ -1,5 +1,5 @@
 import { Slider } from 'antd';
-import { RangeSliderProps, SlideBarProps } from '../../utils/interfaces';
+import { RangeSliderProps, SideBarProps } from '../../utils/interfaces';
 import { CategoriesContext } from '../../context/CategoriesContext';
 import { useContext } from 'react';
 
@@ -51,14 +51,13 @@ function SideBar({ categories, setPriceRange, priceRange }: SideBarProps) {
           <RangeSlider setPriceRange={setPriceRange} priceRange={priceRange} />
         </span>
         <h6 className='mb-5'>CATEGORIES</h6>
-        {categories.map((category) => (
+        {categories.map((category: string) => (
           <label key={category} className='flex items-center mb-2'>
             <input
               type='checkbox'
               className='mr-2'
               onChange={() => onCategoryChange(category)}
               checked={selectedCategories.includes(category)}
-
             />
             {category.charAt(0).toUpperCase() + category.slice(1)}
           </label>

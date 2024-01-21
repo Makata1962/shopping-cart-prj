@@ -1,8 +1,16 @@
-import { createContext, useState } from 'react';
+import { ReactNode, createContext, useState } from 'react';
 
-export const CategoriesContext = createContext([]);
+interface CategoriesContextValue {
+  selectedCategories: string[];
+  setSelectedCategories: React.Dispatch<React.SetStateAction<string[]>>;
+}
 
-export function CategoriesProvider({ children }) {
+export const CategoriesContext = createContext<CategoriesContextValue>({
+  selectedCategories: [],
+  setSelectedCategories: () => {},
+});
+
+export function CategoriesProvider({ children }: { children: ReactNode }) {
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   return (
     <CategoriesContext.Provider

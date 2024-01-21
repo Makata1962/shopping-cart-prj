@@ -1,7 +1,7 @@
 import Card from './Card';
 import { CardProps, ProductsProps } from '../../utils/interfaces';
 
-function ProductList({ products }: CardProps[]) {
+function ProductList({ products }: ProductsProps) {
   if (products.length === 0)
     return (
       <div className='flex justify-center items-center w-full h-full text-gray-400'>

@@ -41,7 +41,7 @@ function Carousel() {
   };
 
   if (isLoading) return <Spinner />;
-  if (error) return <Error message={error} />;
+  if (error) return <Error message={error as string} />;
 
   return (
     <div className='w-[950px] m-auto mb-48'>

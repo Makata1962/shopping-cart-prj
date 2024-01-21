@@ -3,12 +3,10 @@
 @tailwind utilities;
 
 :root {
-    font-family: "BPG Glaho", sans-serif;
+  font-family: 'BPG Glaho', sans-serif;
 }
 
- 
-  .slick-next:before,
-  .slick-prev:before {
-    color: gray
-  }
-  
+.slick-next:before,
+.slick-prev:before {
+  color: gray;
+}
