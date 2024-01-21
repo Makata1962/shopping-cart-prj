@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { getCategories } from '../services/apiProducts';
@@ -8,9 +8,11 @@ import SideBar from '../features/sidebar/SideBar';
 import Spinner from '../ui/Spinner';
 import Error from '../ui/Error';
 import { CardProps } from '../utils/interfaces';
+import { CategoriesContext } from '../context/CategoriesContext';
 
 function Products() {
-  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+  const { selectedCategories } =
+    useContext(CategoriesContext);
   const [priceRange, setPriceRange] = useState<number[]>([0, 500]);
   const products = useLoaderData() as ProductsProps;
 
@@ -28,8 +30,8 @@ function Products() {
 
   const filteredProducts = products.filter((product: CardProps) => {
     const isInSelectedCategory =
-      selectedCategories.length === 0 ||
-      selectedCategories.includes(product?.category);
+      selectedCategories?.length === 0 ||
+      selectedCategories?.includes(product?.category);
     const isInPriceRange =
       product.price >= priceRange[0] && product.price <= priceRange[1];
     return isInSelectedCategory && isInPriceRange;
@@ -43,7 +45,6 @@ function Products() {
       <div className='w-[384px]'>
         <SideBar
           categories={categories}
-          setSelectedCategories={setSelectedCategories}
           setPriceRange={setPriceRange}
           priceRange={priceRange}
         />

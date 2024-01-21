@@ -7,6 +7,9 @@ import { getCategories } from '../../services/apiProducts';
 import { useQuery } from '@tanstack/react-query';
 import Spinner from '../../ui/Spinner';
 import Error from '../../ui/Error';
+import Button from '../../ui/Button';
+import { CategoriesContext } from '../../context/CategoriesContext';
+import { useContext } from 'react';
 
 const settings = {
   infinite: true,
@@ -31,6 +34,12 @@ function Carousel() {
     ...(data || []),
   ];
 
+  const { setSelectedCategories } = useContext(CategoriesContext);
+
+  const onClickHandler = (category: string) => {
+    setSelectedCategories((prevState) => [...prevState, category]);
+  };
+
   if (isLoading) return <Spinner />;
   if (error) return <Error message={error} />;
 
@@ -39,21 +48,23 @@ function Carousel() {
       <div className='mt-20 px-5'>
         <Slider {...settings}>
           {categories.map((category) => (
-            <div
-              key={category}
-              className='bg-white h-auto text-black rounded-xl'
-            >
-              <div className='h-56 flex flex-col justify-center items-center'>
-                <Image
-                  src={getImageSrc(category)}
-                  className='h-auto w-44 mb-2'
-                  alt={category}
-                />
-                <p className='text-xl font-medium	-tracking-tighter'>
-                  {category}
-                </p>
+            <Button to='product-list' type='nav' key={category}>
+              <div
+                className='bg-white h-auto text-black rounded-xl'
+                onClick={() => onClickHandler(category)}
+              >
+                <div className='h-56 flex flex-col justify-center items-center'>
+                  <Image
+                    src={getImageSrc(category)}
+                    className='h-auto w-44 mb-2'
+                    alt={category}
+                  />
+                  <p className='text-xl font-medium	-tracking-tighter'>
+                    {category}
+                  </p>
+                </div>
               </div>
-            </div>
+            </Button>
           ))}
         </Slider>
       </div>

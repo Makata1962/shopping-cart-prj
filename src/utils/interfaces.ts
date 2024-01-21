@@ -31,8 +31,7 @@ export interface RangeSliderProps {
     priceRange: number[]
 }
 
-export interface SlideBarProps {
-    categories: string[];
+export interface SideBarProps {
     setSelectedCategories: (selected: string[]) => void;
     setPriceRange: ((value: number) => void) | ((value: number[]) => void)
     priceRange: number[]
