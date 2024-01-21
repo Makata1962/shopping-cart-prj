@@ -1,14 +1,14 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Home from './pages/Home';
-import ProductList from './pages/ProductList';
 import ProductDetails from './pages/ProductDetails';
 import Cart from './pages/Cart';
 import Favorites from './pages/Favorites';
 import AppLayout from './ui/AppLayout';
 import RouterError from './ui/RouterError';
 
-import { productLoader, categoriesLoader } from './utils/helpers';
+import { productLoader } from './utils/helpers';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import Products from './pages/Products';
 
 const router = createBrowserRouter([
   {
@@ -21,7 +21,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/product-list',
-        element: <ProductList />,
+        element: <Products />,
         loader: productLoader,
       },
       {

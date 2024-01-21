@@ -1,5 +1,5 @@
 export interface ProductsProps {
-    map(arg0: ({ id, title, image, price }: CardProps) => import("react/jsx-runtime").JSX.Element): [];
+    filter(arg0: (product: CardProps) => boolean): CardProps[];
     products: CardProps[];
 }
 
@@ -9,6 +9,7 @@ export interface CardProps {
     title: string;
     image: string;
     price: number;
+    category?: string;
 }
 
 export interface ImageProps {
@@ -23,4 +24,16 @@ export interface ButtonProps {
     to?: string;
     type: 'primary' | 'secondary' | 'nav';
     onClick?: React.MouseEventHandler<HTMLButtonElement>;
+}
+
+export interface RangeSliderProps {
+    setPriceRange: ((value: number) => void) | ((value: number[]) => void)
+    priceRange: number[]
+}
+
+export interface SlideBarProps {
+    categories: string[];
+    setSelectedCategories: (selected: string[]) => void;
+    setPriceRange: ((value: number) => void) | ((value: number[]) => void)
+    priceRange: number[]
 }
