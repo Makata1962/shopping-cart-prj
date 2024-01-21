@@ -1,5 +1,7 @@
 import { Slider } from 'antd';
 import { RangeSliderProps, SlideBarProps } from '../../utils/interfaces';
+import { CategoriesContext } from '../../context/CategoriesContext';
+import { useContext } from 'react';
 
 function RangeSlider({ setPriceRange, priceRange }: RangeSliderProps) {
   const onChange = (value: number[]) => {
@@ -27,14 +29,12 @@ function RangeSlider({ setPriceRange, priceRange }: RangeSliderProps) {
   );
 }
 
-function SideBar({
-  categories,
-  setSelectedCategories,
-  setPriceRange,
-  priceRange,
-}: SlideBarProps) {
+function SideBar({ categories, setPriceRange, priceRange }: SideBarProps) {
+  const { selectedCategories, setSelectedCategories } =
+    useContext(CategoriesContext);
+
   const onCategoryChange = (category: string) => {
-    setSelectedCategories((prevState: string[]): string[] => { 
+    setSelectedCategories((prevState: string[]): string[] => {
       if (!prevState.includes(category)) {
         return [...prevState, category];
       } else {
@@ -57,6 +57,8 @@ function SideBar({
               type='checkbox'
               className='mr-2'
               onChange={() => onCategoryChange(category)}
+              checked={selectedCategories.includes(category)}
+
             />
             {category.charAt(0).toUpperCase() + category.slice(1)}
           </label>
