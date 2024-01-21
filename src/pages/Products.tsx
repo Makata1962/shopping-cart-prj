@@ -10,10 +10,9 @@ import { CardProps } from '../utils/interfaces';
 import { CategoriesContext } from '../context/CategoriesContext';
 
 function Products() {
-  const { selectedCategories } =
-    useContext(CategoriesContext);
+  const { selectedCategories } = useContext(CategoriesContext);
   const [priceRange, setPriceRange] = useState<number[]>([0, 500]);
-  const products = useLoaderData() as  Array<CardProps>;
+  const products = useLoaderData() as Array<CardProps>;
 
   const { isLoading, data, error } = useQuery({
     queryKey: ['product'],
@@ -30,14 +29,14 @@ function Products() {
   const filteredProducts = products.filter((product: CardProps) => {
     const isInSelectedCategory =
       selectedCategories?.length === 0 ||
-      selectedCategories?.includes(product?.category || "");
-      const isInPriceRange =
+      selectedCategories?.includes(product?.category || '');
+    const isInPriceRange =
       product.price >= priceRange[0] && product.price <= priceRange[1];
     return isInSelectedCategory && isInPriceRange;
   }) as CardProps[];
 
   if (isLoading) return <Spinner />;
-  if (error) return <Error message={error} />;
+  if (error) return <Error message={error as string} />;
 
   return (
     <div className='flex justify-start'>

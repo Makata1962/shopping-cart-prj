@@ -25,7 +25,8 @@ export function getImageSrc(categoryName: string) {
 }
 
 
-export async function productLoader() {
+export async function productsLoader() {
     const products = await getProducts();
     return products;
 }
+

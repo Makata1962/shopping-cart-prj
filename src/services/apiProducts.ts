@@ -12,12 +12,16 @@ export async function getProducts() {
     return [];
 }
 
-export async function getProduct(id: number) {
-    const res = await fetch(`${API_URL}/products/${id}`);
-    if (!res.ok) throw Error(`Couldn't find product #${id}`);
+export async function getProduct(id: string) {
+    try {
+        const res = await fetch(`${API_URL}/products/${id}`);
+        const data = await res.json();
 
-    const { data } = await res.json();
-    return data;
+        return data;
+    } catch (error) {
+        console.error("Error fetching products:", error);
+    }
+    return [];
 }
 
 export async function getCategories() {
