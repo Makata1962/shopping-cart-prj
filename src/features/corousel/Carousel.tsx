@@ -35,7 +35,7 @@ function Carousel() {
   if (error) return <Error message={error} />;
 
   return (
-    <div className='w-[950px] m-auto'>
+    <div className='w-[950px] m-auto mb-48'>
       <div className='mt-20 px-5'>
         <Slider {...settings}>
           {categories.map((category) => (
