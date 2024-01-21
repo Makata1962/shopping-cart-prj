@@ -1,5 +1,5 @@
-import Card from '../features/product/Card';
-import { CardProps, ProductsProps } from '../utils/interfaces';
+import Card from './Card';
+import { CardProps, ProductsProps } from '../../utils/interfaces';
 import { useLoaderData } from 'react-router-dom';
 
 function ProductList() {
