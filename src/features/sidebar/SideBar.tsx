@@ -1,41 +1,66 @@
 import { Slider } from 'antd';
-import React, { useState } from 'react';
+import { RangeSliderProps, SlideBarProps } from '../../utils/interfaces';
 
-function RangeSlider() {
-  const [value, setValue] = useState([120, 300]); // Initialize state with default range
-
-  const onChange = (newValue: number | number[]) => {
-    console.log('onChange: ', newValue);
-    setValue(newValue as number[]);
+function RangeSlider({ setPriceRange, priceRange }: RangeSliderProps) {
+  const onChange = (value: number[]) => {
+    setPriceRange(value as number & number[]);
   };
 
   return (
     <div>
-      <div className='flex justify-between mb-1'>
-        <span>Range</span>
+      <div className='flex justify-between mb-1 text-sm'>
+        <h6>Range</h6>
         <div>
-          <span>{`₾ ${value[0]}`} - </span>
-          <span>{`₾ ${value[1]}`}</span>
+          <span>{`₾ ${priceRange[0]}`} - </span>
+          <span>{`₾ ${priceRange[1]}`}</span>
         </div>
       </div>
       <Slider
         range
         step={10}
-        min={120}
-        max={300}
-        value={value}
+        min={0}
+        max={500}
+        value={priceRange}
         onChange={onChange}
       />
     </div>
   );
 }
 
-function SideBar() {
+function SideBar({
+  categories,
+  setSelectedCategories,
+  setPriceRange,
+  priceRange,
+}: SlideBarProps) {
+  const onCategoryChange = (category: string) => {
+    setSelectedCategories((prevState: string[]): string[] => { 
+      if (!prevState.includes(category)) {
+        return [...prevState, category];
+      } else {
+        return prevState.filter((item) => item !== category);
+      }
+    });
+  };
+
   return (
     <div className='w-full m-auto'>
-      <div className='bg-[#F9FAFB] w-[225px] p-4'>
-        <h1 className='text-lg font-semibold'>PRICES</h1>
-        <RangeSlider />
+      <div className=' flex flex-col items-start text-sm bg-[#F9FAFB] w-[225px] p-4'>
+        <h1 className='font-medium text-sm mb-5'>PRICES</h1>
+        <span className='mb-20'>
+          <RangeSlider setPriceRange={setPriceRange} priceRange={priceRange} />
+        </span>
+        <h6 className='mb-5'>CATEGORIES</h6>
+        {categories.map((category) => (
+          <label key={category} className='flex items-center mb-2'>
+            <input
+              type='checkbox'
+              className='mr-2'
+              onChange={() => onCategoryChange(category)}
+            />
+            {category.charAt(0).toUpperCase() + category.slice(1)}
+          </label>
+        ))}
       </div>
     </div>
   );

@@ -1,10 +1,7 @@
 import Card from './Card';
 import { CardProps, ProductsProps } from '../../utils/interfaces';
-import { useLoaderData } from 'react-router-dom';
 
-function ProductList() {
-  const products = useLoaderData() as ProductsProps;
-
+function ProductList({ products }: CardProps[]) {
   return (
     <div className='flex flex-wrap gap-4'>
       {products.map(({ id, title, image, price }: CardProps) => {
