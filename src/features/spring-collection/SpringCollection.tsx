@@ -7,7 +7,7 @@ function SpringCollection() {
   const endDate = '2024-05-30T00:00:00';
 
   return (
-    <div className='flex justify-center items relative overflow-x-hidden'>
+    <div className='flex justify-center items relative overflow-x-hidden mb-32'>
       <Image src={spring} alt='spring collection cover' />
       <div className='absolute bottom-20 left-60 w-full h-full flex flex-col justify-center items-center'>
         <h1 className='mb-5 font-medium'>
