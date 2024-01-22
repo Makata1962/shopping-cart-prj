@@ -1,7 +1,14 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { ButtonProps } from '../utils/interfaces';
 
-function Button({ children, disabled, to, type, onClick }: ButtonProps) {
+function Button({
+  children,
+  disabled,
+  to,
+  type,
+  onClick,
+  className,
+}: ButtonProps) {
   const base =
     'inline-block text-xl rounded-md bg-[#3D5572] text-white tracking-wide transition-colors duration-300 hover:bg-[#2B3E57] focus:bg-[#2B3E57] focus:outline-none focus:ring focus:ring-[#50728C] focus:ring-offset-2 disabled:cursor-not-allowed';
 
@@ -12,34 +19,44 @@ function Button({ children, disabled, to, type, onClick }: ButtonProps) {
   };
 
   const navigate = useNavigate();
-  const className = 'text-sm text-blue-500 hover:text-blue-600 hover:underline';
+  const style = 'text-sm text-blue-500 hover:text-blue-600 hover:underline';
 
   if (to === '-1')
     return (
-      <button className={className} onClick={() => navigate(-1)}>
+      <button className={style} onClick={() => navigate(-1)}>
         {children}
       </button>
     );
 
-  if (to)
+  if (to && type)
     return (
       <Link to={to} className={styles[type]}>
         {children}
       </Link>
     );
 
-  if (onClick)
+  if (onClick && type)
     return (
       <button onClick={onClick} disabled={disabled} className={styles[type]}>
         {children}
       </button>
     );
 
-  return (
-    <button disabled={disabled} className={styles[type]}>
-      {children}
-    </button>
-  );
+  if (className)
+    return (
+      <button onClick={onClick} disabled={disabled} className={className}>
+        {children}
+      </button>
+    );
+
+  if (type)
+    return (
+      <button disabled={disabled} className={styles[type]}>
+        {children}
+      </button>
+    );
+
+  return null;
 }
 
 export default Button;
