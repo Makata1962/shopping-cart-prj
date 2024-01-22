@@ -2,6 +2,9 @@ import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 import { getProduct, getProducts } from '../services/apiProducts';
 import { useParams } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../slices/productSlice';
+
 import Spinner from '../ui/Spinner';
 import Error from '../ui/Error';
 import Image from '../ui/Image';
@@ -29,7 +32,8 @@ function ProductDetails() {
     queryFn: getProducts,
   });
 
-  const [quantity, setQuantity] = useState(0);
+  const [quantity, setQuantity] = useState(1);
+  const dispatch = useDispatch();
 
   if (isLoading) return <Spinner />;
   if (error) return <Error message={error as string} />;
@@ -53,7 +57,7 @@ function ProductDetails() {
   };
 
   const onAddProductToCartHandler = () => {
-    console.log('adding to cart...');
+    dispatch(addToCart({ ...product, quantity: quantity }));
   };
 
   const onQuantityIncrease = () => {
@@ -117,7 +121,9 @@ function ProductDetails() {
         </div>
       </div>
       <div className='flex flex-col justify-center items-center px-10'>
-        <h1 className='self-start text-[#3E5673] font-medium text-lg mb-4'>Similar Products</h1>
+        <h1 className='self-start text-[#3E5673] font-medium text-lg mb-4'>
+          Similar Products
+        </h1>
         <ProductList products={products} type='small' />
       </div>
     </div>
