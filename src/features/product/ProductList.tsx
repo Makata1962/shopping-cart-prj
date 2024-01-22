@@ -23,16 +23,8 @@ function ProductList({ products, type }: ProductsProps) {
     return (
       <div className='flex flex-col justify-center items-center'>
         <div className='flex flex-wrap gap-4 w-full mb-10'>
-          {displayedProducts.map(({ id, title, image, price }: CardProps) => {
-            return (
-              <Card
-                key={id}
-                id={id}
-                title={title}
-                price={price}
-                image={image}
-              />
-            );
+          {displayedProducts.map((product: CardProps) => {
+            return <Card key={product.id} product={product} />
           })}
         </div>
         {chunkSize < products.length && (

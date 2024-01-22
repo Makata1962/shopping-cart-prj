@@ -72,5 +72,14 @@ export const getCartProducts = (state) => {
   return state.product.cartProducts;
 };
 
+export const getFavoriteProduct = (state, id) => {
+  return state.product.favoriteProducts.some(product => product.id === id);
+};
+
+export const getFavoriteProducts = (state) => {
+  return state.product.favoriteProducts;
+};
+
+
 
 export default productSlice.reducer;
