@@ -1,4 +1,5 @@
 export interface ProductsProps {
+    type?: 'small';
     products: CardProps[];
 }
 
@@ -21,8 +22,9 @@ export interface ButtonProps {
     children: React.ReactNode;
     disabled?: boolean;
     to?: string;
-    type: 'primary' | 'secondary' | 'nav';
+    type?: 'primary' | 'secondary' | 'nav';
     onClick?: React.MouseEventHandler<HTMLButtonElement>;
+    className?: string;
 }
 
 export interface RangeSliderProps {
@@ -41,4 +43,4 @@ export interface TimeLeft {
     hours: number;
     minutes: number;
     seconds: number;
-  }
+}
