@@ -3,6 +3,7 @@ import { CardProps, ProductsProps } from '../../utils/interfaces';
 import Button from '../../ui/Button';
 import { useState } from 'react';
 import { READ_MORE_CHUNK_SIZE } from '../../utils/constants';
+import EmptyContent from '../../ui/EmptyContent';
 
 function ProductList({ products, type }: ProductsProps) {
   const [chunkSize, setChunkSize] = useState(READ_MORE_CHUNK_SIZE);
@@ -16,12 +17,7 @@ function ProductList({ products, type }: ProductsProps) {
     setDisplayedProducts(products.slice(0, newChunkSize));
   };
 
-  if (products.length === 0)
-    return (
-      <div className='flex justify-center items-center w-full h-full text-gray-400'>
-        No matched products were found.
-      </div>
-    );
+  if (!products.length) return <EmptyContent />;
 
   if (type === 'small')
     return (

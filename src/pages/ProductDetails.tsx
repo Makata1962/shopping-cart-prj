@@ -44,7 +44,7 @@ function ProductDetails() {
     customPaging: function () {
       return (
         <a>
-          <img src={product.image} />
+          <Image src={product.image} alt={product.title} />
         </a>
       );
     },
@@ -74,26 +74,26 @@ function ProductDetails() {
         <div className='max-w-[500px] h-auto bg-red-300z]'>
           <Slider {...settings}>
             <div>
-              <img src={product.image} />
+              <Image src={product.image} alt={product.title} />
             </div>
             <div>
-              <img src={product.image} />
+              <Image src={product.image} alt={product.title} />
             </div>
             <div>
-              <img src={product.image} />
+              <Image src={product.image} alt={product.title} />
             </div>
             <div>
-              <img src={product.image} />
+              <Image src={product.image} alt={product.title} />
             </div>
           </Slider>
         </div>
         <div className='w-1/2 flex flex-col items-start'>
           <h3 className='font-bold mb-5'>{product.title}</h3>
           <h3 className='font-extrabold text-[#3E5673] mb-4'>
-            ₾ {product.price}
+            ₾ {product.price * quantity}
           </h3>
-          <p className='text-left font-semibold'>{product.description}</p>
-          <p>Quantity</p>
+          <p className='text-left font-semibold mb-5'>{product.description}</p>
+          <p className='mb-3'>Quantity</p>
           <div className='px-2 py-2 border-[#3E5673] border-solid border-2 mb-14'>
             <Button
               onClick={onQuantityIncrease}

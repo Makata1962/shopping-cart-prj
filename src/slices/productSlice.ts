@@ -18,7 +18,7 @@ const productSlice = createSlice({
     },
     addToCart: (state, { payload }) => {
       const existingProductIndex = state.cartProducts.findIndex(item => item.id === payload.id);
-      
+
       if (existingProductIndex !== -1) {
         state.cartProducts[existingProductIndex].quantity += payload.quantity;
       } else {
@@ -29,6 +29,12 @@ const productSlice = createSlice({
       state.cartProducts = state.cartProducts.filter(
         (product) => product.id !== payload
       );
+    },
+    updateProductQuantity: (state, { payload }) => {
+      const index = state.cartProducts.findIndex(product => product.id === payload.id);
+      if (index !== -1) {
+        state.cartProducts[index].quantity += payload.productQuantity;
+      }
     },
     addToFavorite: (state, { payload }) => {
       state.favoriteProducts.push(payload);
@@ -41,7 +47,7 @@ const productSlice = createSlice({
   },
 });
 
-export const { addToCart, deleteFromCart, addToFavorite, deleteFromFavorite } =
+export const { addToCart, deleteFromCart, updateProductQuantity, addToFavorite, deleteFromFavorite } =
   productSlice.actions;
 
 // used thunk to demonstrate .... ?? delete it
