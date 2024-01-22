@@ -10,6 +10,7 @@ export interface CardProps {
     image: string;
     price: number;
     category?: string;
+    quantity?: number;
 }
 
 export interface ImageProps {

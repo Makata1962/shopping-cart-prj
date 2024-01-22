@@ -1,8 +1,8 @@
 import Button from './Button';
 import Image from './Image';
 import closet from '../assets/closet.png';
-import account from '../assets/account.svg';
-import cart from '../assets/cart.svg';
+import CartDropDown from '../features/cart/CartDropDown';
+import AccountDropdown from './AccountDropdown';
 
 function Header() {
   return (
@@ -26,8 +26,8 @@ function Header() {
         </Button>
       </nav>
       <div className='flex justify-center items-center hover:cursor-pointer'>
-        <Image src={account} alt='account icon' className='mr-4' />
-        <Image src={cart} alt='cart icon' />
+        <CartDropDown />
+        <AccountDropdown />
       </div>
     </div>
   );
