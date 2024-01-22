@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   favoriteProducts: [],
-  cartProducts: [{ id: 1, title: '???' }],
+  cartProducts: [],
   totalPrice: 0,
   isLoading: false,
   error: '',
@@ -17,7 +17,13 @@ const productSlice = createSlice({
       state.error = '';
     },
     addToCart: (state, { payload }) => {
-      state.cartProducts.push(payload);
+      const existingProductIndex = state.cartProducts.findIndex(item => item.id === payload.id);
+      
+      if (existingProductIndex !== -1) {
+        state.cartProducts[existingProductIndex].quantity += payload.quantity;
+      } else {
+        state.cartProducts.push(payload);
+      }
     },
     deleteFromCart: (state, { payload }) => {
       state.cartProducts = state.cartProducts.filter(
@@ -59,5 +65,6 @@ export const { addToCart, deleteFromCart, addToFavorite, deleteFromFavorite } =
 export const getCartProducts = (state) => {
   return state.product.cartProducts;
 };
+
 
 export default productSlice.reducer;
