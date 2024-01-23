@@ -4,7 +4,11 @@ import { titleChecker } from '../../utils/helpers';
 import { useDispatch } from 'react-redux';
 import vector from '../../assets/vector.svg';
 import { CardProps } from '../../utils/interfaces';
-import { updateProductQuantity } from '../../slices/productSlice';
+import {
+  deleteFromCart,
+  updateProductQuantity,
+} from '../../slices/productSlice';
+import { CloseOutlined } from '@ant-design/icons';
 
 function ProductItem({ id, image, title, price, quantity = 1 }: CardProps) {
   const dispatch = useDispatch();
@@ -14,6 +18,10 @@ function ProductItem({ id, image, title, price, quantity = 1 }: CardProps) {
   };
   const onQuantityDecrease = () => {
     dispatch(updateProductQuantity({ id, productQuantity: -1 }));
+  };
+
+  const onCloseClick = () => {
+    dispatch(deleteFromCart(id));
   };
 
   return (
@@ -46,8 +54,10 @@ function ProductItem({ id, image, title, price, quantity = 1 }: CardProps) {
             </Button>
           </div>
         </div>
+        <CloseOutlined onClick={onCloseClick} />
       </div>
       <Image src={vector} alt='underline' />
+     
     </>
   );
 }

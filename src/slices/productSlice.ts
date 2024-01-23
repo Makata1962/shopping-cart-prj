@@ -30,6 +30,9 @@ const productSlice = createSlice({
         (product) => product.id !== payload
       );
     },
+    clearCart: (state) => {
+      state.cartProducts = []
+    },
     updateProductQuantity: (state, { payload }) => {
       const index = state.cartProducts.findIndex(product => product.id === payload.id);
       if (index !== -1) {
@@ -47,7 +50,7 @@ const productSlice = createSlice({
   },
 });
 
-export const { addToCart, deleteFromCart, updateProductQuantity, addToFavorite, deleteFromFavorite } =
+export const { addToCart, deleteFromCart, clearCart, updateProductQuantity, addToFavorite, deleteFromFavorite } =
   productSlice.actions;
 
 // used thunk to demonstrate .... ?? delete it
@@ -78,6 +81,10 @@ export const getFavoriteProduct = (state, id) => {
 
 export const getFavoriteProducts = (state) => {
   return state.product.favoriteProducts;
+};
+
+export const getTotalPrice = (state) => {
+  return state.product.cartProducts.reduce((acc, cur) => acc + (cur.price * cur.quantity), 0);
 };
 
 

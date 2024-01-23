@@ -26,20 +26,20 @@ function LogIn() {
   const dispatch = useDispatch();
 
   const showModal = () => {
-    dispatch(openModal(true));
+    dispatch(openModal());
   };
   const handleOk = async () => {
     const token = await userLogIn(username, password);
     if (token) {
       dispatch(createCustomer({ username, token }));
     }
-    dispatch(closeModal(false));
+    dispatch(closeModal());
     setUsername('');
     setPassword('');
   };
 
   const handleCancel = () => {
-    dispatch(closeModal(false));
+    dispatch(closeModal());
     setUsername('');
     setPassword('');
   };

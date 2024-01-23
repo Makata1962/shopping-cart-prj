@@ -11,11 +11,11 @@ function ProtectedRoutes({ children }: { children: ReactNode }) {
   useEffect(() => {
     if (!username) {
       navigate('/');
-      dispatch(openModal(true));
+      dispatch(openModal());
     }
   }, [username, navigate, dispatch]);
 
-  return <div>{children}</div>;
+  return children;
 }
 
 export default ProtectedRoutes;

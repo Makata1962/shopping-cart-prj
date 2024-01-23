@@ -14,11 +14,11 @@ const customerSlice = createSlice({
             state.username = payload.username;
             state.token = payload.token;
         },
-        openModal(state, { payload }) {
-            state.isModalOpen = payload;
+        openModal(state) {
+            state.isModalOpen = true;
         },
-        closeModal(state, { payload }) {
-            state.isModalOpen = payload;
+        closeModal(state) {
+            state.isModalOpen = false;
         }
     }
 })
