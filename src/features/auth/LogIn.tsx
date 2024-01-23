@@ -4,8 +4,13 @@ import { ChangeEvent, useState } from 'react';
 import { Input } from 'antd';
 import hanger from '../../assets/modal-icon.png';
 import { userLogIn } from '../../services/apiProducts';
-import { useDispatch } from 'react-redux';
-import { createCustomer } from '../../slices/customerSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  closeModal,
+  createCustomer,
+  getModal,
+  openModal,
+} from '../../slices/customerSlice';
 
 const customTitle = (
   <div className='flex flex-col justify-center items-center text-4xl font-medium text-white mb-10'>
@@ -15,26 +20,26 @@ const customTitle = (
 );
 
 function LogIn() {
-  const [open, setOpen] = useState(false);
+  const open = useSelector(getModal);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
 
   const showModal = () => {
-    setOpen(true);
+    dispatch(openModal(true));
   };
   const handleOk = async () => {
     const token = await userLogIn(username, password);
     if (token) {
       dispatch(createCustomer({ username, token }));
     }
-    setOpen(false);
+    dispatch(closeModal(false));
     setUsername('');
     setPassword('');
   };
 
   const handleCancel = () => {
-    setOpen(false);
+    dispatch(closeModal(false));
     setUsername('');
     setPassword('');
   };

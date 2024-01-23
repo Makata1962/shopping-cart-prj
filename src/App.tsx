@@ -9,6 +9,7 @@ import RouterError from './ui/RouterError';
 import { productsLoader } from './utils/helpers';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import Products from './pages/Products';
+import ProtectedRoutes from './pages/ProtectedRoutes';
 
 const router = createBrowserRouter([
   {
@@ -30,7 +31,11 @@ const router = createBrowserRouter([
       },
       {
         path: '/cart',
-        element: <Cart />,
+        element: (
+          <ProtectedRoutes>
+            <Cart />
+          </ProtectedRoutes>
+        ),
       },
       {
         path: '/favorites',

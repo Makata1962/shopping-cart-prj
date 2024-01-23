@@ -1,8 +1,8 @@
-import { ReactNode, createContext, useState } from 'react';
+import { Dispatch, ReactNode, SetStateAction, createContext, useState } from 'react';
 
 interface CategoriesContextValue {
   selectedCategories: string[];
-  setSelectedCategories: React.Dispatch<React.SetStateAction<string[]>>;
+  setSelectedCategories: Dispatch<SetStateAction<string[]>>;
 }
 
 export const CategoriesContext = createContext<CategoriesContextValue>({

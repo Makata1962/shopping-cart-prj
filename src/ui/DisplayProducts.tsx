@@ -28,7 +28,6 @@ function DisplayProducts({ products }: ProductsProps) {
     const isInSelectedCategory =
       selectedCategories?.length === 0 ||
       selectedCategories?.includes(product?.category || '');
-      console.log(selectedCategories, isInSelectedCategory, product)
     const isInPriceRange =
       product.price >= priceRange[0] && product.price <= priceRange[1];
     return isInSelectedCategory && isInPriceRange;
