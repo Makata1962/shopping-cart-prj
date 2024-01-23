@@ -40,9 +40,11 @@ function Cart() {
           Total: ₾ {totalPrice.toFixed(2)}
         </div>
         <div className='self-end my-20'>
-          <Button onClick={onClearClick} type='primary' className='mx-5'>
-            Clear Cart
-          </Button>
+          <span className='mr-5'>
+            <Button onClick={onClearClick} type='primary'>
+              Clear Cart
+            </Button>
+          </span>
           <Button type='primary'>Checkout</Button>
         </div>
       </div>

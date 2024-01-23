@@ -15,7 +15,7 @@ function ProtectedRoutes({ children }: { children: ReactNode }) {
     }
   }, [username, navigate, dispatch]);
 
-  return <div>{children}</div>;
+  return children;
 }
 
 export default ProtectedRoutes;
