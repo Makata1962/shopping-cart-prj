@@ -35,3 +35,24 @@ export async function getCategories() {
     }
     return [];
 }
+
+export async function userLogIn(username: string, password: string) {
+    try {
+        const res = await fetch('https://fakestoreapi.com/auth/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                username,
+                password,
+            })
+        });
+
+        const user = await res.json()
+
+        return user;
+    } catch (error) {
+        console.log('Error while authenticating user:', error)
+    }
+}

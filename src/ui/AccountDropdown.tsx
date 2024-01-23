@@ -3,6 +3,7 @@ import Button from './Button';
 import account from '../assets/account.svg';
 import type { MenuProps } from 'antd';
 import { Menu } from 'antd';
+import LogIn from '../features/auth/LogIn';
 
 const items: MenuProps['items'] = [
   {
@@ -19,7 +20,7 @@ const items: MenuProps['items'] = [
             label: (
               <span className='flex justify-center items-center to'>
                 <Button type='nav' to='/'>
-                  Sign In
+                  <LogIn />
                 </Button>
               </span>
             ),
