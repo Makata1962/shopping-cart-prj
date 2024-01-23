@@ -25,8 +25,6 @@ function Products() {
   if (isLoading) return <Spinner />;
   if (error) return <Error message={error as string} />;
 
-  console.log(products);
-
   return (
     <div className='flex flex-col'>
       <span className='self-end'>

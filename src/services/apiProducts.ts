@@ -1,8 +1,6 @@
 import { API_URL } from '../utils/constants';
 
 export async function getProducts() {
-    console.log('asc')
-
     try {
         const res = await fetch(`${API_URL}/products`);
         const data = await res.json();
@@ -15,7 +13,6 @@ export async function getProducts() {
 }
 
 export async function getDescProducts() {
-    console.log('desc')
     try {
         const res = await fetch(`${API_URL}/products?sort=desc`);
         const data = await res.json();
