@@ -4,9 +4,13 @@ import { getCartProducts } from '../slices/productSlice';
 import { CardProps } from '../utils/interfaces';
 import ProductItem from '../features/cart/ProductItem';
 import EmptyContent from '../ui/EmptyContent';
+import { getUsername } from '../slices/customerSlice';
 
 function Cart() {
   const products = useSelector(getCartProducts);
+  const username = useSelector(getUsername);
+
+  console.log(username);
 
   if (!products.length) return <EmptyContent />;
 
