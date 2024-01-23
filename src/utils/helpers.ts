@@ -1,4 +1,3 @@
-import { getProducts } from '../services/apiProducts';
 import Trainers from '../assets/trainers.png';
 import Dress from '../assets/dress.png';
 import Jacket from '../assets/jacket.png';
@@ -23,13 +22,6 @@ export function getImageSrc(categoryName: string) {
     // because api data of categories are different from figma design
     return images[categoryName] || Jacket
 }
-
-
-export async function productsLoader() {
-    const products = await getProducts();
-    return products;
-}
-
 
 export function titleChecker(title: string, maxLength: number) {
     if (title.length > maxLength) {

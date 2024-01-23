@@ -6,7 +6,6 @@ import Favorites from './pages/Favorites';
 import AppLayout from './ui/AppLayout';
 import RouterError from './ui/RouterError';
 
-import { productsLoader } from './utils/helpers';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import Products from './pages/Products';
 import ProtectedRoutes from './pages/ProtectedRoutes';
@@ -23,7 +22,6 @@ const router = createBrowserRouter([
       {
         path: '/product-list',
         element: <Products />,
-        loader: productsLoader,
       },
       {
         path: '/product-list/:productId',
