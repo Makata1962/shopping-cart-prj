@@ -11,7 +11,7 @@ function ProtectedRoutes({ children }: { children: ReactNode }) {
   useEffect(() => {
     if (!username) {
       navigate('/');
-      dispatch(openModal(true));
+      dispatch(openModal());
     }
   }, [username, navigate, dispatch]);
 
