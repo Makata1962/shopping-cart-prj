@@ -23,9 +23,20 @@ function ProductList({ products, type }: ProductsProps) {
     return (
       <div className='flex flex-col justify-center items-center'>
         <div className='flex flex-wrap gap-4 w-full mb-10'>
-          {displayedProducts.map((product: CardProps) => {
-            return <Card key={product.id} product={product} />
-          })}
+          {displayedProducts.map(
+            ({ id, title, image, price, category }: CardProps) => {
+              return (
+                <Card
+                  key={id}
+                  id={id}
+                  title={title}
+                  price={price}
+                  image={image}
+                  category={category}
+                />
+              );
+            }
+          )}
         </div>
         {chunkSize < products.length && (
           <Button type='secondary' onClick={onReadMoreHandler}>
@@ -37,9 +48,16 @@ function ProductList({ products, type }: ProductsProps) {
 
   return (
     <div className='flex flex-wrap gap-4 w-full'>
-      {products.map(({ id, title, image, price }: CardProps) => {
+      {products.map(({ id, title, image, price, category }: CardProps) => {
         return (
-          <Card key={id} id={id} title={title} price={price} image={image} />
+          <Card
+            key={id}
+            id={id}
+            title={title}
+            price={price}
+            image={image}
+            category={category}
+          />
         );
       })}
     </div>

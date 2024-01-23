@@ -7,15 +7,11 @@ import { useSelector } from 'react-redux';
 import { getFavoriteProducts } from '../slices/productSlice';
 import favorite from '../assets/favorite.svg';
 import redFavorite from '../assets/red-favorite.svg';
-import { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
 function Header() {
-  const [filtered, setFiltered] = useState(false);
+  const { pathname } = useLocation();
   const favorites = useSelector(getFavoriteProducts);
-
-  const onFavoriteHandler = () => {
-    setFiltered((prev) => !prev);
-  };
 
   return (
     <div className='w-full h-[75px] flex justify-between items-center px-20'>
@@ -39,17 +35,15 @@ function Header() {
       </nav>
       <div className='flex justify-center items-center hover:cursor-pointer'>
         <CartDropDown />
-        {favorites.length > 0 && !filtered && (
-          <>
-            <span onClick={onFavoriteHandler}>
-              <Image src={favorite} alt='heart icon' />
-            </span>
-          </>
+        {favorites.length > 0 && pathname !== '/favorites' && (
+          <Button to='/favorites' type='nav'>
+            <Image src={favorite} alt='heart icon' />
+          </Button>
         )}
-        {filtered && favorites.length > 0 && (
-          <span onClick={onFavoriteHandler}>
+        {pathname === '/favorites' && favorites.length > 0 && (
+          <Button to='/favorites' type='nav'>
             <Image src={redFavorite} alt='red heart icon' />
-          </span>
+          </Button>
         )}
         <AccountDropdown />
       </div>

@@ -6,7 +6,6 @@ import {
   addToFavorite,
   deleteFromFavorite,
   getFavoriteProduct,
-  getFavoriteProducts,
 } from '../../slices/productSlice';
 import { HeartOutlined, HeartTwoTone } from '@ant-design/icons';
 
@@ -14,9 +13,6 @@ function Card(product: CardProps) {
   const { id, title, image, price } = product;
   const dispatch = useDispatch();
   const addedToFavorite = useSelector((state) => getFavoriteProduct(state, id));
-  const favorites = useSelector(getFavoriteProducts);
-
-  console.log(favorites);
 
   const onAddToFavoritesHandler = () => {
     dispatch(addToFavorite(product));
