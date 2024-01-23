@@ -1,10 +1,18 @@
 import Button from './Button';
 import Image from './Image';
 import closet from '../assets/closet.png';
-import CartDropDown from '../features/cart/CartDropDown';
+import CartDropDown from '../features/cart/CartDropdown';
 import AccountDropdown from './AccountDropdown';
+import { useSelector } from 'react-redux';
+import { getFavoriteProducts } from '../slices/productSlice';
+import favorite from '../assets/favorite.svg';
+import redFavorite from '../assets/red-favorite.svg';
+import { useLocation } from 'react-router-dom';
 
 function Header() {
+  const { pathname } = useLocation();
+  const favorites = useSelector(getFavoriteProducts);
+
   return (
     <div className='w-full h-[75px] flex justify-between items-center px-20'>
       <Button to='/' type='nav'>
@@ -27,6 +35,16 @@ function Header() {
       </nav>
       <div className='flex justify-center items-center hover:cursor-pointer'>
         <CartDropDown />
+        {favorites.length > 0 && pathname !== '/favorites' && (
+          <Button to='/favorites' type='nav'>
+            <Image src={favorite} alt='heart icon' />
+          </Button>
+        )}
+        {pathname === '/favorites' && favorites.length > 0 && (
+          <Button to='/favorites' type='nav'>
+            <Image src={redFavorite} alt='red heart icon' />
+          </Button>
+        )}
         <AccountDropdown />
       </div>
     </div>
