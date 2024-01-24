@@ -31,12 +31,6 @@ function DisplayProducts({ products }: ProductsProps) {
     ...(data || []),
   ];
 
-  const totalPages = Math.ceil((products?.length || 0) / PAGINATION_CHUNK_SIZE);
-
-  const endIndex = page * PAGINATION_CHUNK_SIZE;
-  const startIndex = endIndex - PAGINATION_CHUNK_SIZE;
-  const currentPageProducts = products?.slice(startIndex, endIndex);
-
   const filteredProductsQuery = useQuery({
     queryKey: ['filteredProducts', selectedCategories],
     queryFn: () => getFilteredByCategories(selectedCategories),
@@ -47,7 +41,7 @@ function DisplayProducts({ products }: ProductsProps) {
     filteredProductsQuery;
 
   const filteredProducts = (
-    filteredByCategoryNames ? filteredByCategoryNames : currentPageProducts
+    filteredByCategoryNames ? filteredByCategoryNames : products
   ).filter(
     (product: CardProps) =>
       product.price >= priceRange[0] && product.price <= priceRange[1]
@@ -61,6 +55,13 @@ function DisplayProducts({ products }: ProductsProps) {
     if (page > 1) setPage(page - 1);
   };
 
+  const endIndex = page * PAGINATION_CHUNK_SIZE;
+  const startIndex = endIndex - PAGINATION_CHUNK_SIZE;
+  const currentPageProducts = filteredProducts?.slice(startIndex, endIndex);
+
+  const totalPages = Math.ceil(
+    (filteredProducts?.length || 0) / PAGINATION_CHUNK_SIZE
+  );
   const isLastPage = page >= totalPages;
 
   if (isLoading) return <Spinner />;
@@ -77,20 +78,18 @@ function DisplayProducts({ products }: ProductsProps) {
         />
       </div>
       <div className='w-[896px] flex flex-col'>
-        <ProductList products={[...filteredProducts]} />
+        <ProductList products={[...currentPageProducts]} />
         <nav className='flex justify-end items-center self-end w-40 my-20'>
-          <button
+          <Button
             disabled={page === 1}
-            className={
-              page === 1
-                ? 'bg-gray-200 px-1 rounded mx-2 focus:cursor-pointer'
-                : ''
-            }
+            className={`border px-1 rounded mx-2 focus:cursor-pointer ${
+              page === 1 ? 'bg-gray-200' : ''
+            }`}
             onClick={prevPage}
           >
             <LeftOutlined />
-          </button>
-          <button
+          </Button>
+          <Button
             className={
               page - 1 === 0
                 ? 'hidden'
@@ -99,11 +98,11 @@ function DisplayProducts({ products }: ProductsProps) {
             onClick={prevPage}
           >
             {page - 1}
-          </button>
-          <button className='border border-[#374151] px-2 rounded mx-2 focus:cursor-pointer'>
+          </Button>
+          <Button className='border border-[#374151] px-2 rounded mx-2 focus:cursor-pointer'>
             {page}
-          </button>
-          <button
+          </Button>
+          <Button
             className={`border px-2 rounded mx-2 focus:cursor-pointer ${
               isLastPage ? 'hidden' : ''
             }`}
@@ -111,8 +110,8 @@ function DisplayProducts({ products }: ProductsProps) {
             disabled={isLastPage}
           >
             {page + 1}
-          </button>
-          <button
+          </Button>
+          <Button
             className={`border px-1 rounded mx-2 focus:cursor-pointer ${
               isLastPage ? 'bg-gray-200' : ''
             }`}
@@ -120,7 +119,7 @@ function DisplayProducts({ products }: ProductsProps) {
             disabled={isLastPage}
           >
             <RightOutlined />
-          </button>
+          </Button>
         </nav>
       </div>
     </div>
