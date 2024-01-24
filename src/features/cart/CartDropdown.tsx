@@ -7,11 +7,10 @@ import { titleChecker } from '../../utils/helpers';
 import type { MenuProps } from 'antd';
 import { Menu } from 'antd';
 import { CardProps } from '../../utils/interfaces';
-
 function CartDropDown() {
   const products = useSelector(getCartProducts);
 
-  const productItems = products.map((product: CardProps) => ({
+  const productItems = products.map((product: CardProps, index: number) => ({
     label: (
       <Button to='/cart' type='nav'>
         <div className='flex items-center'>
@@ -28,8 +27,25 @@ function CartDropDown() {
         </div>
       </Button>
     ),
-    key: product.id,
+    key: `${index}`, // Ensure key is a string
   }));
+
+  // Additional menu items
+  const additionalMenuItems = [
+    {
+      label: (
+        <span className='flex justify-center items-center'>
+          <Button to='/cart' type='nav'>
+            CHECKOUT
+          </Button>
+        </span>
+      ),
+      key: 'Go to checkout',
+    },
+  ];
+
+  // Concatenate productItems with additional items
+  const menuItems = productItems.concat(additionalMenuItems);
 
   const items: MenuProps['items'] = [
     {
@@ -38,22 +54,10 @@ function CartDropDown() {
       children: [
         {
           type: 'group',
-          label: <span className='flex justify-center items-center'>Products</span>,
-          children: productItems.concat([
-            {
-              type: 'divider',
-            },
-            {
-              label: (
-                <span className='flex justify-center items-center'>
-                  <Button to='/cart' type='nav'>
-                    CHECKOUT
-                  </Button>
-                </span>
-              ),
-              key: 'Go to checkout',
-            },
-          ]),
+          label: (
+            <span className='flex justify-center items-center'>Products</span>
+          ),
+          children: menuItems,
         },
       ],
     },

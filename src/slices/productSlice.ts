@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { ProductState } from '../utils/interfaces';
 
-const initialState = {
+const initialState: ProductState = {
   favoriteProducts: [],
   cartProducts: [],
   totalPrice: 0,
@@ -71,20 +72,20 @@ export const { addToCart, deleteFromCart, clearCart, updateProductQuantity, addT
 //     };
 // }
 
-export const getCartProducts = (state) => {
+export const getCartProducts = (state: { product: ProductState }) => {
   return state.product.cartProducts;
 };
 
-export const getFavoriteProduct = (state, id) => {
+export const getFavoriteProduct = (state: { product: ProductState }, id: number) => {
   return state.product.favoriteProducts.some(product => product.id === id);
 };
 
-export const getFavoriteProducts = (state) => {
+export const getFavoriteProducts = (state: { product: ProductState }) => {
   return state.product.favoriteProducts;
 };
 
-export const getTotalPrice = (state) => {
-  return state.product.cartProducts.reduce((acc, cur) => acc + (cur.price * cur.quantity), 0);
+export const getTotalPrice = (state: { product: ProductState }) => {
+  return state.product.cartProducts.reduce((acc, cur) => acc + (cur.price * (cur.quantity || 1)), 0);
 };
 
 

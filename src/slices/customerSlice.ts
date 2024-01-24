@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { CustomerState } from '../utils/interfaces';
 
-const initialState = {
+const initialState: CustomerState = {
     username: '',
     token: '',
     isModalOpen: false,
@@ -26,8 +27,8 @@ const customerSlice = createSlice({
 
 export const { createCustomer, openModal, closeModal } = customerSlice.actions
 
-export const getUsername = (state) => state.customer.username;
-export const getModal = (state) => state.customer.isModalOpen;
+export const getUsername = (state: { customer: CustomerState }) => state.customer.username;
+export const getModal = (state: { customer: CustomerState }) => state.customer.isModalOpen;
 
 
 export default customerSlice.reducer

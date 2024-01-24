@@ -7,12 +7,13 @@ import {
   deleteFromFavorite,
   getFavoriteProduct,
 } from '../../slices/productSlice';
+import { ProductState } from '../../utils/interfaces';
 import { HeartOutlined, HeartTwoTone } from '@ant-design/icons';
 
 function Card(product: CardProps) {
   const { id, title, image, price } = product;
   const dispatch = useDispatch();
-  const addedToFavorite = useSelector((state) => getFavoriteProduct(state, id));
+  const addedToFavorite = useSelector((state: { product: ProductState }) => getFavoriteProduct(state, id));
 
   const onAddToFavoritesHandler = () => {
     dispatch(addToFavorite(product));

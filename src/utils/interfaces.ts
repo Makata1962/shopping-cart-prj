@@ -40,8 +40,23 @@ export interface SideBarProps {
 }
 
 export interface TimeLeft {
+    [key: string]: number;
     days: number;
     hours: number;
     minutes: number;
     seconds: number;
+}
+
+export interface CustomerState {
+    username: string;
+    token: string;
+    isModalOpen: boolean;
+}
+
+export interface ProductState {
+    favoriteProducts: CardProps[],
+    cartProducts: CardProps[],
+    totalPrice: number,
+    isLoading: boolean,
+    error: string,
 }

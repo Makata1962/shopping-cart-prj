@@ -1,8 +1,14 @@
 import { useState, useEffect } from 'react';
+import { TimeLeft } from '../../utils/interfaces';
 
-const calculateTimeLeft = (targetDate: Date) => {
+const calculateTimeLeft = (targetDate: Date): TimeLeft => {
   const difference = +new Date(targetDate) - +new Date();
-  let timeLeft = {};
+  let timeLeft: TimeLeft = {
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+  };
 
   if (difference > 0) {
     timeLeft = {
@@ -24,7 +30,9 @@ const calculateTimeLeft = (targetDate: Date) => {
 };
 
 function Countdown({ targetDate }: { targetDate: Date }) {
-  const [timeLeft, setTimeLeft] = useState(calculateTimeLeft(targetDate));
+  const [timeLeft, setTimeLeft] = useState<TimeLeft>(
+    calculateTimeLeft(targetDate)
+  );
 
   useEffect(() => {
     const timer = setTimeout(() => {
