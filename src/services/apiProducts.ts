@@ -48,9 +48,29 @@ export async function getCategories() {
     return [];
 }
 
+export async function getFilteredByCategories(categoryNames: string[]) {
+    try {
+        const promises = categoryNames.map(async (categoryName) => {
+            try {
+                const res = await fetch(`${API_URL}/products/category/${categoryName}`);
+                const data = await res.json();
+                return data;
+            } catch (error) {
+                console.error(`Error fetching products for category ${categoryName}:`, error);
+                return [];
+            }
+        });
+        const results = await Promise.all(promises);
+        return results.flat();
+    } catch (error) {
+        console.error("Error fetching categories:", error);
+        return [];
+    }
+}
+
 export async function userLogIn(username: string, password: string) {
     try {
-        const res = await fetch('https://fakestoreapi.com/auth/login', {
+        const res = await fetch(`${API_URL}/auth/login`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

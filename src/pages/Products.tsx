@@ -1,5 +1,4 @@
 import DisplayProducts from '../ui/DisplayProducts';
-import Button from '../ui/Button';
 import Spinner from '../ui/Spinner';
 import Error from '../ui/Error';
 import { useQuery } from '@tanstack/react-query';
@@ -28,16 +27,16 @@ function Products() {
   return (
     <div className='flex flex-col'>
       <span className='self-end'>
-        <SortDescendingOutlined
-          onClick={() => setIsDesc(true)}
-          className={`mr-3 p-2 rounded ${isDesc ? 'bg-gray-400' : ''}`}
-        />
         <SortAscendingOutlined
           onClick={() => setIsDesc(false)}
           className={`mr-3 p-2 rounded ${isDesc ? '' : 'bg-gray-400'}`}
         />
+        <SortDescendingOutlined
+          onClick={() => setIsDesc(true)}
+          className={`mr-3 p-2 rounded ${isDesc ? 'bg-gray-400' : ''}`}
+        />
       </span>
-      <DisplayProducts products={products} />;
+      <DisplayProducts products={products} />
     </div>
   );
 }
