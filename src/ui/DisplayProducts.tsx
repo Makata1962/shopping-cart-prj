@@ -1,6 +1,9 @@
 import { useContext, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { getCategories } from '../services/apiProducts';
+import {
+  getCategories,
+  getFilteredByCategories,
+} from '../services/apiProducts';
 import ProductList from '../features/product/ProductList';
 import SideBar from '../features/sidebar/SideBar';
 import Spinner from '../ui/Spinner';
@@ -24,17 +27,25 @@ function DisplayProducts({ products }: ProductsProps) {
     ...(data || []),
   ];
 
-  const filteredProducts = products.filter((product: CardProps) => {
-    const isInSelectedCategory =
-      selectedCategories?.length === 0 ||
-      selectedCategories?.includes(product?.category || '');
-    const isInPriceRange =
-      product.price >= priceRange[0] && product.price <= priceRange[1];
-    return isInSelectedCategory && isInPriceRange;
-  }) as CardProps[];
+  const filteredProductsQuery = useQuery({
+    queryKey: ['filteredProducts', selectedCategories],
+    queryFn: () => getFilteredByCategories(selectedCategories),
+    enabled: !!selectedCategories.length,
+  });
+
+  const { data: filteredByCategoryNames, error: isFilteredError } =
+    filteredProductsQuery;
+
+  const filteredProducts = (
+    filteredByCategoryNames ? filteredByCategoryNames : products
+  ).filter(
+    (product: CardProps) =>
+      product.price >= priceRange[0] && product.price <= priceRange[1]
+  ) as CardProps[];
 
   if (isLoading) return <Spinner />;
   if (error) return <Error message={error as string} />;
+  if (isFilteredError) return <Error message={error as string} />;
 
   return (
     <div className='flex justify-start'>
@@ -46,7 +57,7 @@ function DisplayProducts({ products }: ProductsProps) {
         />
       </div>
       <div className='w-[896px]'>
-        <ProductList products={filteredProducts} />
+        <ProductList products={[...filteredProducts]} />
       </div>
     </div>
   );
