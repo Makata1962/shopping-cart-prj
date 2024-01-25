@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { getProduct, getProducts } from '../services/apiProducts';
 import { useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
@@ -9,9 +9,9 @@ import Spinner from '../ui/common/Spinner';
 import Error from '../ui/common/Error';
 import Image from '../ui/common/Image';
 import Button from '../ui/common/Button';
-import Slider from 'react-slick';
 import cart from '../assets/cart.svg';
 import ProductList from '../features/product/ProductList';
+import ProductDetailsSlider from '../ui/ProductDetailsSlider';
 
 function ProductDetails() {
   const { productId } = useParams();
@@ -35,27 +35,6 @@ function ProductDetails() {
   const [quantity, setQuantity] = useState(1);
   const dispatch = useDispatch();
 
-  const customPaging = useCallback(() => {
-    return (
-      <a>
-        <Image src={product.image} alt={product.title} />
-      </a>
-    );
-  }, [product.image, product.title]);
-
-  const settings = useMemo(
-    () => ({
-      customPaging: customPaging,
-      dots: true,
-      dotsClass: 'slick-dots slick-thumb',
-      infinite: true,
-      speed: 500,
-      slidesToShow: 1,
-      slidesToScroll: 1,
-    }),
-    [customPaging]
-  );
-
   const onAddProductToCartHandler = useCallback(() => {
     dispatch(addToCart({ ...product, quantity: quantity }));
   }, [dispatch, product, quantity]);
@@ -76,22 +55,7 @@ function ProductDetails() {
   return (
     <div className='max-w-[1280px]'>
       <div className='flex justify-between items-center mb-20'>
-        <div className='max-w-[500px] h-auto bg-red-300z]'>
-          <Slider {...settings}>
-            <div>
-              <Image src={product.image} alt={product.title} />
-            </div>
-            <div>
-              <Image src={product.image} alt={product.title} />
-            </div>
-            <div>
-              <Image src={product.image} alt={product.title} />
-            </div>
-            <div>
-              <Image src={product.image} alt={product.title} />
-            </div>
-          </Slider>
-        </div>
+        <ProductDetailsSlider product={product} />
         <div className='w-1/2 flex flex-col items-start'>
           <h3 className='font-bold mb-5'>{product.title}</h3>
           <h3 className='font-extrabold text-deep-ocean mb-4'>

@@ -1,25 +1,10 @@
-import Image from '../../ui/common/Image';
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-import { getImageSrc } from '../../utils/helpers';
 import { getCategories } from '../../services/apiProducts';
 import { useQuery } from '@tanstack/react-query';
 import Spinner from '../../ui/common/Spinner';
 import Error from '../../ui/common/Error';
-import Button from '../../ui/common/Button';
 import { CategoriesContext } from '../../context/CategoriesContext';
 import { useContext } from 'react';
-
-const settings = {
-  infinite: true,
-  slidesToShow: 4,
-  slidesToScroll: 1,
-  autoplay: true,
-  speed: 1000,
-  autoplaySpeed: 2000,
-  cssEase: 'linear',
-};
+import CarouselSlider from '../../ui/CarouselSlider';
 
 function Carousel() {
   const { isLoading, data, error } = useQuery({
@@ -46,27 +31,7 @@ function Carousel() {
   return (
     <div className='w-[950px] m-auto mb-48'>
       <div className='mt-20 px-5'>
-        <Slider {...settings}>
-          {categories.map((category) => (
-            <Button to='product-list' type='nav' key={category}>
-              <div
-                className='bg-white h-auto text-black rounded-xl'
-                onClick={() => onClickHandler(category)}
-              >
-                <div className='h-56 flex flex-col justify-center items-center'>
-                  <Image
-                    src={getImageSrc(category)}
-                    className='h-auto w-44 mb-2'
-                    alt={category}
-                  />
-                  <p className='text-xl font-medium	-tracking-tighter'>
-                    {category}
-                  </p>
-                </div>
-              </div>
-            </Button>
-          ))}
-        </Slider>
+        <CarouselSlider categories={categories} onClick={onClickHandler} />
       </div>
     </div>
   );
