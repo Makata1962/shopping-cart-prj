@@ -1,19 +1,22 @@
-import { ReactNode, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { getUsername, openModal } from '../slices/customerSlice';
+import { ReactNode, useContext, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { useQueryClient } from '@tanstack/react-query';
+import { ModalContext } from '../context/ModalContext';
 
 function ProtectedRoutes({ children }: { children: ReactNode }) {
-  const username = useSelector(getUsername);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
+  const userToken = queryClient.getQueryData(['user']);
+  const { setIsModalOpen } = useContext(ModalContext);
 
   useEffect(() => {
-    if (!username) {
+    if (!userToken) {
       navigate('/');
-      dispatch(openModal());
+      setIsModalOpen(true);
     }
-  }, [username, navigate, dispatch]);
+  }, [navigate, dispatch, userToken, setIsModalOpen]);
 
   return children;
 }

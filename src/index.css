@@ -12,17 +12,22 @@ a, a:hover, a:focus {
 
 .ant-menu-light>.ant-menu .ant-menu-item-selected  {
   background-color: #edf2f7;
+  color:black;
 }
 
 .ant-menu-light>.ant-menu .ant-menu-item-selected:hover  {
   background-color: #E2E8F0;
+  color:black;
+}
+.ant-menu-light>.ant-menu .ant-menu-item-selected:focus  {
+  background-color: #E2E8F0;
+  color:black;
 }
 
 .slick-next:before,
 .slick-prev:before {
   color: gray;
 }
-
 
 .ant-modal .ant-modal-content,
 .ant-modal .ant-modal-title  {

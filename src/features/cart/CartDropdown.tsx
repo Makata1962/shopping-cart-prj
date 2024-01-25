@@ -27,10 +27,9 @@ function CartDropDown() {
         </div>
       </Button>
     ),
-    key: `${index}`, // Ensure key is a string
+    key: `${index}`,
   }));
 
-  // Additional menu items
   const additionalMenuItems = [
     {
       label: (
@@ -40,11 +39,10 @@ function CartDropDown() {
           </Button>
         </span>
       ),
-      key: 'Go to checkout',
+      key: 'checkout',
     },
   ];
 
-  // Concatenate productItems with additional items
   const menuItems = productItems.concat(additionalMenuItems);
 
   const items: MenuProps['items'] = [

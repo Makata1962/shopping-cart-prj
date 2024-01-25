@@ -1,17 +1,13 @@
 import { Modal } from 'antd';
 import Image from '../../ui/common/Image';
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useContext, useState } from 'react';
 import { Input } from 'antd';
 import hanger from '../../assets/modal-icon.png';
-import { userLogIn } from '../../services/apiProducts';
-import { useDispatch, useSelector } from 'react-redux';
-import {
-  closeModal,
-  createCustomer,
-  getModal,
-  openModal,
-} from '../../slices/customerSlice';
 import Button from '../../ui/common/Button';
+import Spinner from '../../ui/Spinner';
+import Error from '../../ui/common/Error';
+import useLogin from './useLogin';
+import { ModalContext } from '../../context/ModalContext';
 
 const customTitle = (
   <div className='flex flex-col justify-center items-center text-4xl font-medium text-white mb-10'>
@@ -21,26 +17,24 @@ const customTitle = (
 );
 
 function LogIn() {
-  const open = useSelector(getModal);
+  const { isModalOpen, setIsModalOpen } = useContext(ModalContext);
+
   const [username, setUsername] = useState('mor_2314');
   const [password, setPassword] = useState('83r5^_');
-  const dispatch = useDispatch();
+  const { mutate: login, isLoading, error } = useLogin();
 
   const showModal = () => {
-    dispatch(openModal());
+    setIsModalOpen(true);
   };
   const handleOk = async () => {
-    const token = await userLogIn(username, password);
-    if (token) {
-      dispatch(createCustomer({ username, token }));
-    }
-    dispatch(closeModal());
+    login({ username, password });
+    setIsModalOpen(false);
     setUsername('');
     setPassword('');
   };
 
   const handleCancel = () => {
-    dispatch(closeModal());
+    setIsModalOpen(false);
     setUsername('');
     setPassword('');
   };
@@ -51,6 +45,9 @@ function LogIn() {
   const onPasswordChangeHandler = (evt: ChangeEvent<HTMLInputElement>) =>
     setPassword(evt.target.value);
 
+  if (isLoading) return <Spinner />;
+  if (error) return <Error message={error as string} />;
+
   return (
     <div>
       <Button type='dropdown' onClick={showModal}>
@@ -58,7 +55,7 @@ function LogIn() {
       </Button>
       <Modal
         className='login-modal'
-        open={open}
+        open={isModalOpen}
         title={customTitle}
         onOk={handleOk}
         onCancel={handleCancel}
