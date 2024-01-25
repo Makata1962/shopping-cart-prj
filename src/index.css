@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  font-family: 'BPG Glaho', sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 a, a:hover, a:focus {

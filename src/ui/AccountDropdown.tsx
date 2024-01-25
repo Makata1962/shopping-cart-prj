@@ -1,5 +1,4 @@
 import Image from './common/Image';
-import Button from './common/Button';
 import account from '../assets/account.svg';
 import type { MenuProps } from 'antd';
 import { Menu } from 'antd';
@@ -27,9 +26,7 @@ function AccountDropdown() {
               {
                 label: (
                   <span className='flex justify-center items-center to'>
-                    <Button type='nav' to='/'>
-                      {userToken ? <LogOut /> : <LogIn />}
-                    </Button>
+                    {userToken ? <LogOut /> : <LogIn />}
                   </span>
                 ),
                 key: 'sign-in',
