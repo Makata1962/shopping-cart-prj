@@ -1,7 +1,7 @@
 import Card from './Card';
 import { CardProps, ProductsProps } from '../../utils/interfaces';
 import Button from '../../ui/Button';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { READ_MORE_CHUNK_SIZE } from '../../utils/constants';
 import EmptyContent from '../../ui/EmptyContent';
 
@@ -11,11 +11,11 @@ function ProductList({ products, type }: ProductsProps) {
     products.slice(0, chunkSize)
   );
 
-  const onReadMoreHandler = () => {
+  const onReadMoreHandler = useCallback(() => {
     const newChunkSize = chunkSize + READ_MORE_CHUNK_SIZE;
     setChunkSize(newChunkSize);
     setDisplayedProducts(products.slice(0, newChunkSize));
-  };
+  }, [chunkSize, products]);
 
   if (!products.length) return <EmptyContent />;
 

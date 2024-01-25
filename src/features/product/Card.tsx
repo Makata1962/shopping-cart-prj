@@ -9,19 +9,22 @@ import {
 } from '../../slices/productSlice';
 import { ProductState } from '../../utils/interfaces';
 import { HeartOutlined, HeartTwoTone } from '@ant-design/icons';
+import { useCallback } from 'react';
 
 function Card(product: CardProps) {
   const { id, title, image, price } = product;
   const dispatch = useDispatch();
-  const addedToFavorite = useSelector((state: { product: ProductState }) => getFavoriteProduct(state, id));
+  const addedToFavorite = useSelector((state: { product: ProductState }) =>
+    getFavoriteProduct(state, id)
+  );
 
-  const onAddToFavoritesHandler = () => {
+  const onAddToFavoritesHandler = useCallback(() => {
     dispatch(addToFavorite(product));
-  };
+  }, [dispatch, product]);
 
-  const onRemoveFromFavoriteHandler = () => {
+  const onRemoveFromFavoriteHandler = useCallback(() => {
     dispatch(deleteFromFavorite(id));
-  };
+  }, [dispatch, id]);
 
   // Both heart icon had figma issues,
   // outlined icon's svg was empty

@@ -1,3 +1,4 @@
+import { useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   clearCart,
@@ -15,16 +16,16 @@ function Cart() {
   const totalPrice = useSelector(getTotalPrice);
   const dispatch = useDispatch();
 
+  const onClearClick = useCallback(() => {
+    dispatch(clearCart());
+  }, [dispatch]);
+
   if (!products.length)
     return (
       <div className='h-screen'>
         <EmptyContent />
       </div>
     );
-
-  const onClearClick = () => {
-    dispatch(clearCart());
-  };
 
   return (
     <>
