@@ -39,9 +39,11 @@ function ProductList({ products, type }: ProductsProps) {
           )}
         </div>
         {chunkSize < products.length && (
-          <Button type='secondary' onClick={onReadMoreHandler}>
-            Read More
-          </Button>
+          <span className='mb-10'>
+            <Button type='secondary' onClick={onReadMoreHandler}>
+              Read More
+            </Button>
+          </span>
         )}
       </div>
     );
