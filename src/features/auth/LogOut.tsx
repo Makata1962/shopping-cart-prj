@@ -1,11 +1,10 @@
 import { Modal } from 'antd';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { logOut } from '../../slices/customerSlice';
 import Button from '../../ui/common/Button';
+import { useQueryClient } from '@tanstack/react-query';
 
 function LogOut() {
-  const dispatch = useDispatch();
+  const queryClient = useQueryClient();
   const [open, setOpen] = useState(false);
 
   const showModal = () => {
@@ -13,7 +12,7 @@ function LogOut() {
   };
 
   const handleOk = () => {
-    dispatch(logOut());
+    queryClient.setQueryData(['user'], null);
     setOpen(false);
   };
 

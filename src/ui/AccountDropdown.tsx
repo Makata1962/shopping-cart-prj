@@ -4,13 +4,13 @@ import account from '../assets/account.svg';
 import type { MenuProps } from 'antd';
 import { Menu } from 'antd';
 import LogIn from '../features/auth/LogIn';
-import { getUsername } from '../slices/customerSlice';
-import { useSelector } from 'react-redux';
 import LogOut from '../features/auth/LogOut';
 import { useMemo } from 'react';
+import { useQueryClient } from '@tanstack/react-query';
 
 function AccountDropdown() {
-  const username = useSelector(getUsername);
+  const queryClient = useQueryClient();
+  const userToken = queryClient.getQueryData(['user']);
 
   const items: MenuProps['items'] = useMemo(
     () => [
@@ -28,7 +28,7 @@ function AccountDropdown() {
                 label: (
                   <span className='flex justify-center items-center to'>
                     <Button type='nav' to='/'>
-                      {username ? <LogOut /> : <LogIn />}
+                      {userToken ? <LogOut /> : <LogIn />}
                     </Button>
                   </span>
                 ),
@@ -39,7 +39,7 @@ function AccountDropdown() {
         ],
       },
     ],
-    [username]
+    [userToken]
   );
 
   return <Menu mode='horizontal' items={items} />;
