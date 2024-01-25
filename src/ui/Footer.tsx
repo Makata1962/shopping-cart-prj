@@ -5,8 +5,8 @@ import instagram from '../assets/instagram.png';
 import amex from '../assets/amex.png';
 import mastercard from '../assets/mastercard.png';
 import visa from '../assets/visa.png';
-import Image from './Image';
-import Button from './Button';
+import Image from './common/Image';
+import Button from './common/Button';
 
 function Footer() {
   return (

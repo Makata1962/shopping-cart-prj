@@ -3,16 +3,16 @@ import { useQuery } from '@tanstack/react-query';
 import {
   getCategories,
   getFilteredByCategories,
-} from '../services/apiProducts';
-import ProductList from '../features/product/ProductList';
-import SideBar from '../features/sidebar/SideBar';
-import Spinner from '../ui/Spinner';
-import Error from '../ui/Error';
-import { CardProps, ProductsProps } from '../utils/interfaces';
-import { CategoriesContext } from '../context/CategoriesContext';
-import { PAGINATION_CHUNK_SIZE } from '../utils/constants';
-import Pagination from '../ui/common/Pagination';
-import usePagination from '../hooks/usePagination';
+} from '../../services/apiProducts';
+import ProductList from '../../features/product/ProductList';
+import SideBar from '../../features/sidebar/SideBar';
+import Spinner from './Spinner';
+import Error from './Error';
+import { CardProps, ProductsProps } from '../../utils/interfaces';
+import { CategoriesContext } from '../../context/CategoriesContext';
+import { PAGINATION_CHUNK_SIZE } from '../../utils/constants';
+import Pagination from './Pagination';
+import usePagination from '../../hooks/usePagination';
 
 function DisplayProducts({ products }: ProductsProps) {
   const { selectedCategories } = useContext(CategoriesContext);

@@ -1,9 +1,9 @@
 import Card from './Card';
 import { CardProps, ProductsProps } from '../../utils/interfaces';
-import Button from '../../ui/Button';
+import Button from '../../ui/common/Button';
 import { useCallback, useState } from 'react';
 import { READ_MORE_CHUNK_SIZE } from '../../utils/constants';
-import EmptyContent from '../../ui/EmptyContent';
+import EmptyContent from '../../ui/common/EmptyContent';
 
 function ProductList({ products, type }: ProductsProps) {
   const [chunkSize, setChunkSize] = useState(READ_MORE_CHUNK_SIZE);

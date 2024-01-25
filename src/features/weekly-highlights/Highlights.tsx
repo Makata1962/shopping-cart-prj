@@ -1,5 +1,5 @@
-import Image from '../../ui/Image';
-import Button from '../../ui/Button';
+import Image from '../../ui/common/Image';
+import Button from '../../ui/common/Button';
 import line from '../../assets/line.svg';
 import shoes from '../../assets/shoes.png';
 import arrivals from '../../assets/arrivals.png';

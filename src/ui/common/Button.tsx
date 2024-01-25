@@ -1,5 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { ButtonProps } from '../utils/interfaces';
+import { ButtonProps } from '../../utils/interfaces';
 
 function Button({
   children,

@@ -1,13 +1,13 @@
-import Image from '../../ui/Image';
+import Image from '../../ui/common/Image';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { getImageSrc } from '../../utils/helpers';
 import { getCategories } from '../../services/apiProducts';
 import { useQuery } from '@tanstack/react-query';
-import Spinner from '../../ui/Spinner';
-import Error from '../../ui/Error';
-import Button from '../../ui/Button';
+import Spinner from '../../ui/common/Spinner';
+import Error from '../../ui/common/Error';
+import Button from '../../ui/common/Button';
 import { CategoriesContext } from '../../context/CategoriesContext';
 import { useContext } from 'react';
 

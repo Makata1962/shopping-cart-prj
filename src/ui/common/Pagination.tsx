@@ -1,13 +1,8 @@
 import { PaginationProps } from '../../utils/interfaces';
-import Button from '../Button';
+import Button from './Button';
 import { LeftOutlined, RightOutlined } from '@ant-design/icons';
 
-function Pagination({
-  page,
-  nextPage,
-  prevPage,
-  isLastPage,
-}: PaginationProps ) {
+function Pagination({ page, nextPage, prevPage, isLastPage }: PaginationProps) {
   return (
     <nav className='flex justify-end items-center self-end w-40 my-20'>
       <Button

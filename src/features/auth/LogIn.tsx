@@ -1,5 +1,5 @@
-import {  Modal } from 'antd';
-import Image from '../../ui/Image';
+import { Modal } from 'antd';
+import Image from '../../ui/common/Image';
 import { ChangeEvent, useState } from 'react';
 import { Input } from 'antd';
 import hanger from '../../assets/modal-icon.png';
@@ -11,7 +11,7 @@ import {
   getModal,
   openModal,
 } from '../../slices/customerSlice';
-import Button from '../../ui/Button';
+import Button from '../../ui/common/Button';
 
 const customTitle = (
   <div className='flex flex-col justify-center items-center text-4xl font-medium text-white mb-10'>

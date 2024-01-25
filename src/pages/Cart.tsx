@@ -8,8 +8,8 @@ import {
 
 import { CardProps } from '../utils/interfaces';
 import ProductItem from '../features/cart/ProductItem';
-import EmptyContent from '../ui/EmptyContent';
-import Button from '../ui/Button';
+import EmptyContent from '../ui/common/EmptyContent';
+import Button from '../ui/common/Button';
 
 function Cart() {
   const products = useSelector(getCartProducts);
