@@ -1,5 +1,5 @@
-import Image from '../../ui/Image';
-import Button from '../../ui/Button';
+import Image from '../../ui/common/Image';
+import Button from '../../ui/common/Button';
 import { titleChecker } from '../../utils/helpers';
 import { useDispatch } from 'react-redux';
 import vector from '../../assets/vector.svg';

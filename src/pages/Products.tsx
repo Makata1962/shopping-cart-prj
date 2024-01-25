@@ -1,6 +1,6 @@
-import DisplayProducts from '../ui/DisplayProducts';
-import Spinner from '../ui/Spinner';
-import Error from '../ui/Error';
+import DisplayProducts from '../ui/common/DisplayProducts';
+import Spinner from '../ui/common/Spinner';
+import Error from '../ui/common/Error';
 import { useQuery } from '@tanstack/react-query';
 import { getDescProducts, getProducts } from '../services/apiProducts';
 import { useState } from 'react';

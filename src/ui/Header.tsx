@@ -1,5 +1,5 @@
-import Button from './Button';
-import Image from './Image';
+import Button from './common/Button';
+import Image from './common/Image';
 import closet from '../assets/closet.png';
 import CartDropDown from '../features/cart/CartDropdown';
 import AccountDropdown from './AccountDropdown';

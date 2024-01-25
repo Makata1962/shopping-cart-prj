@@ -1,5 +1,5 @@
-import Image from './Image';
-import Button from './Button';
+import Image from './common/Image';
+import Button from './common/Button';
 import account from '../assets/account.svg';
 import type { MenuProps } from 'antd';
 import { Menu } from 'antd';

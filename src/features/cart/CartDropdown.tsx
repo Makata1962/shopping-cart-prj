@@ -1,5 +1,5 @@
-import Image from '../../ui/Image';
-import Button from '../../ui/Button';
+import Image from '../../ui/common/Image';
+import Button from '../../ui/common/Button';
 import { useSelector } from 'react-redux';
 import { getCartProducts } from '../../slices/productSlice';
 import cart from '../../assets/cart.svg';

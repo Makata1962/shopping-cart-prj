@@ -2,7 +2,7 @@ import { Modal } from 'antd';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { logOut } from '../../slices/customerSlice';
-import Button from '../../ui/Button';
+import Button from '../../ui/common/Button';
 
 function LogOut() {
   const dispatch = useDispatch();

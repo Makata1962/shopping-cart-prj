@@ -5,10 +5,10 @@ import { useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../slices/productSlice';
 
-import Spinner from '../ui/Spinner';
-import Error from '../ui/Error';
-import Image from '../ui/Image';
-import Button from '../ui/Button';
+import Spinner from '../ui/common/Spinner';
+import Error from '../ui/common/Error';
+import Image from '../ui/common/Image';
+import Button from '../ui/common/Button';
 import Slider from 'react-slick';
 import cart from '../assets/cart.svg';
 import ProductList from '../features/product/ProductList';
@@ -35,26 +35,23 @@ function ProductDetails() {
   const [quantity, setQuantity] = useState(1);
   const dispatch = useDispatch();
 
-  const customPaging = useCallback(() => {
-    return (
-      <a>
-        <Image src={product.image} alt={product.title} />
-      </a>
-    );
-  }, [product.image, product.title]);
-
-  const settings = useMemo(
-    () => ({
-      customPaging: customPaging,
-      dots: true,
-      dotsClass: 'slick-dots slick-thumb',
-      infinite: true,
-      speed: 500,
-      slidesToShow: 1,
-      slidesToScroll: 1,
-    }),
-    [customPaging]
-  );
+  const settings = useMemo(() => ({
+    customPaging: function () {
+      if (!product) return null; // Guard against undefined product
+      return (
+        <a>
+          <Image src={product.image} alt={product.title} />
+        </a>
+      );
+    },
+    dots: true,
+    dotsClass: 'slick-dots slick-thumb',
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  }), [product]); // Add product as a dependency
+  
 
   const onAddProductToCartHandler = useCallback(() => {
     dispatch(addToCart({ ...product, quantity: quantity }));

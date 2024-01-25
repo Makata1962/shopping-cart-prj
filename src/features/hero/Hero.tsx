@@ -1,7 +1,7 @@
 import woman from '../../assets/woman.png';
 import hanger from '../../assets/hanger.png';
-import Image from '../../ui/Image';
-import Button from '../../ui/Button';
+import Image from '../../ui/common/Image';
+import Button from '../../ui/common/Button';
 
 function Hero() {
   return (

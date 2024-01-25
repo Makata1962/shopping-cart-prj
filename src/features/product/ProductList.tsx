@@ -1,9 +1,9 @@
 import Card from './Card';
 import { CardProps, ProductsProps } from '../../utils/interfaces';
-import Button from '../../ui/Button';
+import Button from '../../ui/common/Button';
 import { useCallback, useState } from 'react';
 import { READ_MORE_CHUNK_SIZE } from '../../utils/constants';
-import EmptyContent from '../../ui/EmptyContent';
+import EmptyContent from '../../ui/common/EmptyContent';
 
 function ProductList({ products, type }: ProductsProps) {
   const [chunkSize, setChunkSize] = useState(READ_MORE_CHUNK_SIZE);
@@ -50,9 +50,11 @@ function ProductList({ products, type }: ProductsProps) {
     <div className='flex flex-wrap gap-4 w-full'>
       {products.map(({ id, title, image, price, category }: CardProps) => {
         return (
-          <div className='transform transition-transform duration-500 hover:scale-105'>
+          <div
+            key={id}
+            className='transform transition-transform duration-500 hover:scale-105'
+          >
             <Card
-              key={id}
               id={id}
               title={title}
               price={price}

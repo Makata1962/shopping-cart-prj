@@ -60,3 +60,10 @@ export interface ProductState {
     isLoading: boolean,
     error: string,
 }
+
+export interface PaginationProps {
+    page: number,
+    prevPage: React.MouseEventHandler<HTMLButtonElement>,
+    nextPage: React.MouseEventHandler<HTMLButtonElement>,
+    isLastPage: boolean,
+}

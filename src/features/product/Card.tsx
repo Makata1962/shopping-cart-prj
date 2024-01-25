@@ -1,6 +1,6 @@
 import { CardProps } from '../../utils/interfaces';
-import Image from '../../ui/Image';
-import Button from '../../ui/Button';
+import Image from '../../ui/common/Image';
+import Button from '../../ui/common/Button';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   addToFavorite,
