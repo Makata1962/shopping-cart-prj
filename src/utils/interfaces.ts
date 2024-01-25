@@ -11,6 +11,7 @@ export interface CardProps {
     price: number;
     category?: string;
     quantity?: number;
+    description?: string;
 }
 
 export interface ImageProps {
