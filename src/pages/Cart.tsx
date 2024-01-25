@@ -42,7 +42,7 @@ function Cart() {
         ))}
       </div>
       <div className='flex justify-between items-center'>
-        <div className='text-4xl font-semibold text-[#3E5673]'>
+        <div className='text-4xl font-semibold text-deep-ocean'>
           Total: ₾ {totalPrice.toFixed(2)}
         </div>
         <div className='self-end my-20'>

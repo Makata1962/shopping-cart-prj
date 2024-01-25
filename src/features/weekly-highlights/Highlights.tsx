@@ -10,14 +10,14 @@ function Highlights() {
   return (
     <div className='max-w-[1072px] m-auto'>
       <Button to='/product-list' type='nav'>
-        <div className='flex flex-col justify-center items-center text-[#41587B] text-4xl mb-12 hover:scale-95 transition duration-150 ease-in-out transform active:scale-95'>
+        <div className='flex flex-col justify-center items-center text-deep-blue text-4xl mb-12 hover:scale-95 transition duration-150 ease-in-out transform active:scale-95'>
           <h1 className='mb-5'>
             THIS WEEKS <br /> HIGHLIGHTS
           </h1>
           <Image src={line} alt='underline' />
         </div>
       </Button>
-      <div className='grid grid-cols-3 grid-rows-3 gap-4 text-[#FAFAFA] text-4xl'>
+      <div className='grid grid-cols-3 grid-rows-3 gap-4 text-deep-gray text-4xl'>
         <div className='col-span-1 hover:scale-95 transition duration-500 ease-in-out transform active:scale-95'>
           <Button to='/product-list' type='nav'>
             <div
