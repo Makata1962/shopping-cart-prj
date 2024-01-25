@@ -28,7 +28,9 @@ const productSlice = createSlice({
     },
     deleteFromCart: (state, { payload }) => {
       state.cartProducts = state.cartProducts.filter(
-        (product) => product.id !== payload
+        (product) => {
+          return product.id !== payload
+        }
       );
     },
     clearCart: (state) => {
@@ -37,7 +39,9 @@ const productSlice = createSlice({
     updateProductQuantity: (state, { payload }) => {
       const index = state.cartProducts.findIndex(product => product.id === payload.id);
       if (index !== -1) {
+        console.log(state.cartProducts[index].quantity)
         state.cartProducts[index].quantity += payload.productQuantity;
+        if (state.cartProducts[index].quantity === 0) state.cartProducts.splice(index, 1);
       }
     },
     addToFavorite: (state, { payload }) => {

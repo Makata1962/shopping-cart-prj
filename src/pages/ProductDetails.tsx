@@ -64,7 +64,7 @@ function ProductDetails() {
     setQuantity((prev) => prev + 1);
   };
   const onQuantityDecrease = () => {
-    if (quantity === 0) return;
+    if (quantity === 1) return;
     setQuantity((prev) => prev - 1);
   };
 

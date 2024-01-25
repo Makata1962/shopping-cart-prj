@@ -15,6 +15,10 @@ const customerSlice = createSlice({
             state.username = payload.username;
             state.token = payload.token;
         },
+        logOut(state) {
+            state.username = '';
+            state.token = ''
+        },
         openModal(state) {
             state.isModalOpen = true;
         },
@@ -25,7 +29,7 @@ const customerSlice = createSlice({
 })
 
 
-export const { createCustomer, openModal, closeModal } = customerSlice.actions
+export const { createCustomer, logOut, openModal, closeModal } = customerSlice.actions
 
 export const getUsername = (state: { customer: CustomerState }) => state.customer.username;
 export const getModal = (state: { customer: CustomerState }) => state.customer.isModalOpen;

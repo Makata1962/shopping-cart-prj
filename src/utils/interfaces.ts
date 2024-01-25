@@ -23,7 +23,7 @@ export interface ButtonProps {
     children: React.ReactNode;
     disabled?: boolean;
     to?: string;
-    type?: 'primary' | 'secondary' | 'nav';
+    type?: 'primary' | 'secondary' | 'nav' | 'dropdown' | 'confirm';
     onClick?: React.MouseEventHandler<HTMLButtonElement>;
     className?: string;
 }
