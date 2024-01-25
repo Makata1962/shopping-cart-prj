@@ -15,7 +15,12 @@ function Cart() {
   const totalPrice = useSelector(getTotalPrice);
   const dispatch = useDispatch();
 
-  if (!products.length) return <EmptyContent />;
+  if (!products.length)
+    return (
+      <div className='h-screen'>
+        <EmptyContent />
+      </div>
+    );
 
   const onClearClick = () => {
     dispatch(clearCart());

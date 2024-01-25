@@ -9,6 +9,8 @@ import RouterError from './ui/RouterError';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import Products from './pages/Products';
 import ProtectedRoutes from './pages/ProtectedRoutes';
+import About from './pages/About';
+import Contact from './pages/Contact';
 
 const router = createBrowserRouter([
   {
@@ -38,6 +40,14 @@ const router = createBrowserRouter([
       {
         path: '/favorites',
         element: <Favorites />,
+      },
+      {
+        path: '/about',
+        element: <About />,
+      },
+      {
+        path: '/contact',
+        element: <Contact />,
       },
     ],
   },
