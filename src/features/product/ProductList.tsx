@@ -50,14 +50,16 @@ function ProductList({ products, type }: ProductsProps) {
     <div className='flex flex-wrap gap-4 w-full'>
       {products.map(({ id, title, image, price, category }: CardProps) => {
         return (
-          <Card
-            key={id}
-            id={id}
-            title={title}
-            price={price}
-            image={image}
-            category={category}
-          />
+          <div className='transform transition-transform duration-500 hover:scale-105'>
+            <Card
+              key={id}
+              id={id}
+              title={title}
+              price={price}
+              image={image}
+              category={category}
+            />
+          </div>
         );
       })}
     </div>
