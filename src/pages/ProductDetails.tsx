@@ -94,29 +94,29 @@ function ProductDetails() {
         </div>
         <div className='w-1/2 flex flex-col items-start'>
           <h3 className='font-bold mb-5'>{product.title}</h3>
-          <h3 className='font-extrabold text-[#3E5673] mb-4'>
+          <h3 className='font-extrabold text-deep-ocean mb-4'>
             ₾ {product.price * quantity}
           </h3>
           <p className='text-left font-semibold mb-5'>{product.description}</p>
           <p className='mb-3'>Quantity</p>
-          <div className='px-2 py-2 border-[#3E5673] border-solid border-2 mb-14'>
+          <div className='px-2 py-2 border-deep-ocean border-solid border-2 mb-14'>
             <Button
               onClick={onQuantityIncrease}
-              className='text-[#3E5673] text-2xl'
+              className='text-deep-ocean text-2xl'
             >
               +
             </Button>
-            <span className='px-5 text-[#3E5673] text-2xl'>{quantity}</span>
+            <span className='px-5 text-deep-ocean text-2xl'>{quantity}</span>
             <Button
               onClick={onQuantityDecrease}
-              className='text-[#3E5673] text-2xl'
+              className='text-deep-ocean text-2xl'
             >
               -
             </Button>
           </div>
           <div>
             <Button
-              className='flex justify-between items-center px-14 py-2 border-[#3E5673] text-[#3E5673] transition duration-150 ease-in-out transform active:scale-95 hover:bg-gray-300 border-solid border-2 rounded mb-14'
+              className='flex justify-between items-center px-14 py-2 border-deep-ocean text-deep-ocean transition duration-150 ease-in-out transform active:scale-95 hover:bg-gray-300 border-solid border-2 rounded mb-14'
               onClick={onAddProductToCartHandler}
             >
               <Image src={cart} alt='basket icon' className='px-2' />
@@ -126,7 +126,7 @@ function ProductDetails() {
         </div>
       </div>
       <div className='flex flex-col justify-center items-center px-10'>
-        <h1 className='self-start text-[#3E5673] font-medium text-lg mb-4'>
+        <h1 className='self-start text-deep-ocean font-medium text-lg mb-4'>
           Similar Products
         </h1>
         <ProductList products={products} type='small' />

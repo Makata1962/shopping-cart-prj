@@ -51,7 +51,7 @@ function SideBar({ categories, setPriceRange, priceRange }: SideBarProps) {
 
   return (
     <div className='w-full m-auto'>
-      <div className=' flex flex-col items-start text-sm bg-[#F9FAFB] w-[225px] p-4'>
+      <div className=' flex flex-col items-start text-sm bg-light-gray w-[225px] p-4'>
         <h1 className='font-medium text-sm mb-5'>PRICES</h1>
         <span className='mb-20'>
           <RangeSlider setPriceRange={setPriceRange} priceRange={priceRange} />

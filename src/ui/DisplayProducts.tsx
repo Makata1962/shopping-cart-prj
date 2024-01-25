@@ -101,7 +101,7 @@ function DisplayProducts({ products }: ProductsProps) {
           >
             {page - 1}
           </Button>
-          <Button className='border border-[#374151] px-2 rounded mx-2 focus:cursor-pointer'>
+          <Button className='border border-stormy-blue px-2 rounded mx-2 focus:cursor-pointer'>
             {page}
           </Button>
           <Button

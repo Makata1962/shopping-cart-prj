@@ -10,12 +10,12 @@ import Button from './Button';
 
 function Footer() {
   return (
-    <div className='h-[420px] bg-[#f4f4f4] w-screen'>
+    <div className='h-[420px] bg-base-gray w-screen'>
       <div className='flex justify-between'>
         <div className='mt-9 mx-20'>
           <div className='mb-5'>Navigation</div>
           <Image src={left} alt='navigation underline' className='mb-5' />
-          <nav className='flex flex-col text-[#41587B] text-lg font-roboto mb-10'>
+          <nav className='flex flex-col text-deep-blue text-lg font-roboto mb-10'>
             <Button to='/product-list' type='nav'>
               products
             </Button>
