@@ -15,7 +15,10 @@ function Button({
   const styles = {
     primary: base + ' px-2.5 py-1 md:px-3.5 md:py-2 text-sm',
     secondary: base + ' px-3 py-1 md:px-3 md:py-1 text-[10px]',
-    nav: 'font-semibold	font-roboto',
+    nav: 'font-semibold	font-roboto text-black',
+    dropdown: 'focus:text-[#3E5673] focus:bg-gray-200 !important ',
+    confirm:
+      'inline-block text-center font-semibold bg-[#fff] text-[#3E5673] rounded px-8 py-1.5  hover:bg-[#6f89a8]',
   };
 
   const navigate = useNavigate();
@@ -35,9 +38,9 @@ function Button({
       </Link>
     );
 
-  if (onClick && type)
+  if (type)
     return (
-      <button onClick={onClick} disabled={disabled} className={styles[type]}>
+      <button onClick={onClick} className={styles[type]}>
         {children}
       </button>
     );

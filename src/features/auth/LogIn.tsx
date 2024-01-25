@@ -1,4 +1,4 @@
-import { Button, Modal } from 'antd';
+import {  Modal } from 'antd';
 import Image from '../../ui/Image';
 import { ChangeEvent, useState } from 'react';
 import { Input } from 'antd';
@@ -11,6 +11,7 @@ import {
   getModal,
   openModal,
 } from '../../slices/customerSlice';
+import Button from '../../ui/Button';
 
 const customTitle = (
   <div className='flex flex-col justify-center items-center text-4xl font-medium text-white mb-10'>
@@ -21,8 +22,8 @@ const customTitle = (
 
 function LogIn() {
   const open = useSelector(getModal);
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState('mor_2314');
+  const [password, setPassword] = useState('83r5^_');
   const dispatch = useDispatch();
 
   const showModal = () => {
@@ -52,7 +53,7 @@ function LogIn() {
 
   return (
     <div>
-      <Button type='default' onClick={showModal}>
+      <Button type='dropdown' onClick={showModal}>
         Log In
       </Button>
       <Modal
@@ -62,7 +63,7 @@ function LogIn() {
         onOk={handleOk}
         onCancel={handleCancel}
         footer={[
-          <Button key='submit' type='primary' onClick={handleOk}>
+          <Button key='submit' type='confirm' onClick={handleOk}>
             Login
           </Button>,
         ]}

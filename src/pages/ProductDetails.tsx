@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import { getProduct, getProducts } from '../services/apiProducts';
 import { useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
@@ -35,38 +35,43 @@ function ProductDetails() {
   const [quantity, setQuantity] = useState(1);
   const dispatch = useDispatch();
 
+  const customPaging = useCallback(() => {
+    return (
+      <a>
+        <Image src={product.image} alt={product.title} />
+      </a>
+    );
+  }, [product.image, product.title]);
+
+  const settings = useMemo(
+    () => ({
+      customPaging: customPaging,
+      dots: true,
+      dotsClass: 'slick-dots slick-thumb',
+      infinite: true,
+      speed: 500,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+    }),
+    [customPaging]
+  );
+
+  const onAddProductToCartHandler = useCallback(() => {
+    dispatch(addToCart({ ...product, quantity: quantity }));
+  }, [dispatch, product, quantity]);
+
+  const onQuantityIncrease = useCallback(() => {
+    setQuantity((prev) => prev + 1);
+  }, []);
+  const onQuantityDecrease = useCallback(() => {
+    if (quantity === 1) return;
+    setQuantity((prev) => prev - 1);
+  }, [quantity]);
+
   if (isLoading) return <Spinner />;
   if (error) return <Error message={error as string} />;
   if (productsLoading) return <Spinner />;
   if (productsError) return <Error message={error as string} />;
-
-  const settings = {
-    customPaging: function () {
-      return (
-        <a>
-          <Image src={product.image} alt={product.title} />
-        </a>
-      );
-    },
-    dots: true,
-    dotsClass: 'slick-dots slick-thumb',
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-  };
-
-  const onAddProductToCartHandler = () => {
-    dispatch(addToCart({ ...product, quantity: quantity }));
-  };
-
-  const onQuantityIncrease = () => {
-    setQuantity((prev) => prev + 1);
-  };
-  const onQuantityDecrease = () => {
-    if (quantity === 0) return;
-    setQuantity((prev) => prev - 1);
-  };
 
   return (
     <div className='max-w-[1280px]'>

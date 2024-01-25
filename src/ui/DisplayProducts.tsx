@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useMemo, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import {
   getCategories,
@@ -40,11 +40,13 @@ function DisplayProducts({ products }: ProductsProps) {
   const { data: filteredByCategoryNames, error: isFilteredError } =
     filteredProductsQuery;
 
-  const filteredProducts = (
-    filteredByCategoryNames ? filteredByCategoryNames : products
-  ).filter(
-    (product: CardProps) =>
-      product.price >= priceRange[0] && product.price <= priceRange[1]
+  const filteredProducts = useMemo(
+    () =>
+      (filteredByCategoryNames ? filteredByCategoryNames : products).filter(
+        (product: CardProps) =>
+          product.price >= priceRange[0] && product.price <= priceRange[1]
+      ),
+    [products, filteredByCategoryNames, priceRange]
   ) as CardProps[];
 
   const nextPage = () => {

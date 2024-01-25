@@ -2,10 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
-
-
 :root {
   font-family: 'BPG Glaho', sans-serif;
+}
+
+a, a:hover, a:focus {
+  color:black;
+}
+
+.ant-menu-light>.ant-menu .ant-menu-item-selected  {
+  background-color: #edf2f7;
+}
+
+.ant-menu-light>.ant-menu .ant-menu-item-selected:hover  {
+  background-color: #E2E8F0;
 }
 
 .slick-next:before,
@@ -22,16 +32,4 @@
   align-items: center;
 }
 
-.ant-btn-primary {
-  display: inline-block;
-  text-align: center;
-  font-weight: 600;
-  background-color: white;
-  color: #3E5673;
-  border-radius: 4px;
-  padding: 0px 32px;
-}
-.ant-btn-primary:hover {
-  background-color: #6f89a8 !important;
-}
 

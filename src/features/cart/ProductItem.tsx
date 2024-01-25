@@ -57,7 +57,6 @@ function ProductItem({ id, image, title, price, quantity = 1 }: CardProps) {
         <CloseOutlined onClick={onCloseClick} />
       </div>
       <Image src={vector} alt='underline' />
-     
     </>
   );
 }

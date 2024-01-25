@@ -1,12 +1,15 @@
 import { Slider } from 'antd';
 import { RangeSliderProps, SideBarProps } from '../../utils/interfaces';
 import { CategoriesContext } from '../../context/CategoriesContext';
-import { useContext } from 'react';
+import { useCallback, useContext } from 'react';
 
 function RangeSlider({ setPriceRange, priceRange }: RangeSliderProps) {
-  const onChange = (value: number[]) => {
-    setPriceRange(value as number & number[]);
-  };
+  const onChange = useCallback(
+    (value: number[]) => {
+      setPriceRange(value as number & number[]);
+    },
+    [setPriceRange]
+  );
 
   return (
     <div>
@@ -33,15 +36,18 @@ function SideBar({ categories, setPriceRange, priceRange }: SideBarProps) {
   const { selectedCategories, setSelectedCategories } =
     useContext(CategoriesContext);
 
-  const onCategoryChange = (category: string) => {
-    setSelectedCategories((prevState: string[]): string[] => {
-      if (!prevState.includes(category)) {
-        return [...prevState, category];
-      } else {
-        return prevState.filter((item) => item !== category);
-      }
-    });
-  };
+  const onCategoryChange = useCallback(
+    (category: string) => {
+      setSelectedCategories((prevState: string[]): string[] => {
+        if (!prevState.includes(category)) {
+          return [...prevState, category];
+        } else {
+          return prevState.filter((item) => item !== category);
+        }
+      });
+    },
+    [setSelectedCategories]
+  );
 
   return (
     <div className='w-full m-auto'>
