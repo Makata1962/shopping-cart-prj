@@ -68,3 +68,4 @@ export interface PaginationProps {
     nextPage: React.MouseEventHandler<HTMLButtonElement>,
     isLastPage: boolean,
 }
+

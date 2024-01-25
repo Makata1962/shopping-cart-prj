@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../slices/productSlice';
 
-import Spinner from '../ui/common/Spinner';
+import Spinner from '../ui/Spinner';
 import Error from '../ui/common/Error';
 import Image from '../ui/common/Image';
 import Button from '../ui/common/Button';

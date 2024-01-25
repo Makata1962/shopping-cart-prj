@@ -11,7 +11,6 @@ import { useMemo } from 'react';
 
 function AccountDropdown() {
   const username = useSelector(getUsername);
-  console.log(username);
 
   const items: MenuProps['items'] = useMemo(
     () => [
