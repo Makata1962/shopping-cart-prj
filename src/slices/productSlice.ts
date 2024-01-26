@@ -58,24 +58,6 @@ const productSlice = createSlice({
 export const { addToCart, deleteFromCart, clearCart, updateProductQuantity, addToFavorite, deleteFromFavorite } =
   productSlice.actions;
 
-// used thunk to demonstrate .... ?? delete it
-
-// export function deposit(amount, currency) {
-//     if (currency === 'USD') return { type: 'account/deposit', payload: amount };
-
-//     return async function (dispatch, getState) {
-//         dispatch({ type: 'account/convertingCurrency' });
-
-//         const res = await fetch(
-//             `https://api.frankfurter.app/latest?amount=${amount}&from=${currency}&to=USD`
-//         );
-//         const data = await res.json();
-//         const converted = data.rates.USD;
-
-//         dispatch({ type: 'account/deposit', payload: converted });
-//     };
-// }
-
 export const getCartProducts = (state: { product: ProductState }) => {
   return state.product.cartProducts;
 };
