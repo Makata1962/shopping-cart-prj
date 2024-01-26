@@ -62,7 +62,7 @@ function Card(product: CardProps) {
           className='absolute top-3 right-0 p-3'
         >
           <span className='w-3 h-3 p-3 bg-black bg-opacity-30 backdrop-blur-md'>
-            <HeartTwoTone twoToneColor='bright-red' />
+            <HeartTwoTone twoToneColor='red' />
           </span>
         </Button>
       )}

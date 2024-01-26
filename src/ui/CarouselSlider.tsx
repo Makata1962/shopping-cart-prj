@@ -27,7 +27,7 @@ function CarouselSlider({
       {categories.map((category) => (
         <Button to='product-list' type='nav' key={category}>
           <div
-            className='bg-white h-auto text-black rounded-xl'
+            className='bg-white h-auto text-black rounded-xl transform transition-transform duration-500 hover:scale-110'
             onClick={() => onClick(category)}
           >
             <div className='h-56 flex flex-col justify-center items-center'>

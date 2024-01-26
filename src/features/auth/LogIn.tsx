@@ -6,7 +6,7 @@ import hanger from '../../assets/modal-icon.png';
 import Button from '../../ui/common/Button';
 import Spinner from '../../ui/Spinner';
 import Error from '../../ui/common/Error';
-import useLogin from './useLogin';
+import useLogin from '../../hooks/useLogin';
 import { ModalContext } from '../../context/ModalContext';
 
 const customTitle = (
