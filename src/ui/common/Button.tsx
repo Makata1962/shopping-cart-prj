@@ -16,7 +16,7 @@ function Button({
     primary: base + ' px-2.5 py-1 md:px-3.5 md:py-2 text-sm',
     secondary: base + ' px-3 py-1 md:px-3 md:py-1 text-[10px]',
     nav: 'font-semibold	font-roboto text-black',
-    dropdown: 'focus:text-deep-ocean focus:bg-gray-200 !important ',
+    dropdown: 'focus:text-deep-ocean focus:bg-gray-200 font-bold',
     confirm:
       'inline-block text-center font-semibold bg-white text-deep-ocean rounded px-8 py-1.5  hover:bg-blue-gray',
   };

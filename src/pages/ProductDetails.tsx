@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { getProduct, getProducts } from '../services/apiProducts';
 import { useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
@@ -12,6 +12,7 @@ import Button from '../ui/common/Button';
 import cart from '../assets/cart.svg';
 import ProductList from '../features/product/ProductList';
 import ProductDetailsSlider from '../ui/ProductDetailsSlider';
+import ProductQuantity from '../ui/common/ProductQuantity';
 
 function ProductDetails() {
   const { productId } = useParams();
@@ -34,6 +35,10 @@ function ProductDetails() {
 
   const [quantity, setQuantity] = useState(1);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    setQuantity(1);
+  }, [productId]);
 
   const onAddProductToCartHandler = useCallback(() => {
     dispatch(addToCart({ ...product, quantity: quantity }));
@@ -62,22 +67,11 @@ function ProductDetails() {
             ₾ {product.price * quantity}
           </h3>
           <p className='text-left font-semibold mb-5'>{product.description}</p>
-          <p className='mb-3'>Quantity</p>
-          <div className='px-2 py-2 border-deep-ocean border-solid border-2 mb-14'>
-            <Button
-              onClick={onQuantityIncrease}
-              className='text-deep-ocean text-2xl'
-            >
-              +
-            </Button>
-            <span className='px-5 text-deep-ocean text-2xl'>{quantity}</span>
-            <Button
-              onClick={onQuantityDecrease}
-              className='text-deep-ocean text-2xl'
-            >
-              -
-            </Button>
-          </div>
+          <ProductQuantity
+            quantity={quantity}
+            onQuantityIncrease={onQuantityIncrease}
+            onQuantityDecrease={onQuantityDecrease}
+          />
           <div>
             <Button
               className='flex justify-between items-center px-14 py-2 border-deep-ocean text-deep-ocean transition duration-150 ease-in-out transform active:scale-95 hover:bg-gray-300 border-solid border-2 rounded mb-14'
