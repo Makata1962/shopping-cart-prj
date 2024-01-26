@@ -6,7 +6,7 @@ import {
 } from '../../services/apiProducts';
 import ProductList from '../../features/product/ProductList';
 import SideBar from '../../features/sidebar/SideBar';
-import Spinner from '../Spinner';
+import Spinner from './Spinner';
 import Error from './Error';
 import { CardProps, ProductsProps } from '../../utils/interfaces';
 import { CategoriesContext } from '../../context/CategoriesContext';

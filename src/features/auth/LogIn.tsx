@@ -4,7 +4,7 @@ import { ChangeEvent, useContext, useState } from 'react';
 import { Input } from 'antd';
 import hanger from '../../assets/modal-icon.png';
 import Button from '../../ui/common/Button';
-import Spinner from '../../ui/Spinner';
+import Spinner from '../../ui/common/Spinner';
 import Error from '../../ui/common/Error';
 import useLogin from '../../hooks/useLogin';
 import { ModalContext } from '../../context/ModalContext';

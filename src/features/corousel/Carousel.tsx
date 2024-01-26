@@ -1,6 +1,6 @@
 import { getCategories } from '../../services/apiProducts';
 import { useQuery } from '@tanstack/react-query';
-import Spinner from '../../ui/Spinner';
+import Spinner from '../../ui/common/Spinner';
 import Error from '../../ui/common/Error';
 import { CategoriesContext } from '../../context/CategoriesContext';
 import { useContext } from 'react';
