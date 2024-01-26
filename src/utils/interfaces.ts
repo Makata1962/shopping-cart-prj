@@ -69,3 +69,10 @@ export interface PaginationProps {
     isLastPage: boolean,
 }
 
+
+export interface ProductQuantityProps {
+    quantity: number,
+    onQuantityIncrease: React.MouseEventHandler<HTMLButtonElement>,
+    onQuantityDecrease: React.MouseEventHandler<HTMLButtonElement>,
+
+}

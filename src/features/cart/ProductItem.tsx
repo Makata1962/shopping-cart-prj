@@ -1,5 +1,4 @@
 import Image from '../../ui/common/Image';
-import Button from '../../ui/common/Button';
 import { titleChecker } from '../../utils/helpers';
 import { useDispatch } from 'react-redux';
 import vector from '../../assets/vector.svg';
@@ -9,6 +8,7 @@ import {
   updateProductQuantity,
 } from '../../slices/productSlice';
 import { CloseOutlined } from '@ant-design/icons';
+import ProductQuantity from '../../ui/common/ProductQuantity';
 
 function ProductItem({ id, image, title, price, quantity = 1 }: CardProps) {
   const dispatch = useDispatch();
@@ -37,22 +37,7 @@ function ProductItem({ id, image, title, price, quantity = 1 }: CardProps) {
           </span>
         </div>
         <div className='text-deep-ocean mt-20'>
-          <p className='mb-3'>Quantity</p>
-          <div className='px-2 py-2 border-deep-ocean border-solid border-2 mb-14'>
-            <Button
-              onClick={onQuantityIncrease}
-              className='text-deep-ocean text-2xl'
-            >
-              +
-            </Button>
-            <span className='px-5 text-deep-ocean text-2xl'>{quantity}</span>
-            <Button
-              onClick={onQuantityDecrease}
-              className='text-deep-ocean text-2xl'
-            >
-              -
-            </Button>
-          </div>
+          <ProductQuantity quantity={quantity} onQuantityIncrease={onQuantityIncrease} onQuantityDecrease={onQuantityDecrease}/>
         </div>
         <CloseOutlined onClick={onCloseClick} />
       </div>
